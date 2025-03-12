@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/management/components/trigger-modal/trigger-modal.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n}\n// .trigger-modal-content::after {\n//   content: '';\n//   position: absolute;\n//   left: 15%;\n//   margin-left: -5px;\n//   border-width: 8px;\n//   border-style: solid;\n//   border-color: white transparent transparent transparent;\n// }\n"],
+  "mappings": ";AAAA;AACE,WAAA;;",
+  "names": []
+}

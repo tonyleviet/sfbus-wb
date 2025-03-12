@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/management/pages/bus-types/bus-types.component.scss"],
+  "sourcesContent": ["\ntd {\n  padding: 0.75rem 1rem;\n  font-size: 0.85rem;\n}\n\nth {\n  font-weight: 500;\n  padding: 0.625rem 1rem;\n  font-weight: 500;\n  font-size: 0.8125rem;\n  line-height: 1.125rem;\n  vertical-align: middle;\n  @apply border-b border-r;\n}\n"],
+  "mappings": ";AACA;AACE,WAAA,QAAA;AACA,aAAA;;AAGF;AACE,eAAA;AACA,WAAA,SAAA;AACA,eAAA;AACA,aAAA;AACA,eAAA;AACA,kBAAA;AACA,SAAA,SAAA;;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/management/pages/seat-types/component/create-edit-seat-types-dialog/create-seat-type-dialog.component.scss"],
+  "sourcesContent": [".action-preview-img:hover {\n    opacity: 1;\n    background: rgba(0, 0, 0, .5);\n  }"],
+  "mappings": ";AAAA,CAAA,kBAAA;AACI,WAAA;AACA,cAAA,KAAA,CAAA,EAAA,CAAA,EAAA,CAAA,EAAA;;",
+  "names": []
+}

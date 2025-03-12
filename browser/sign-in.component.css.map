@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/auth/pages/sign-in/sign-in.component.css"],
+  "sourcesContent": ["@reference \"../../../../../styles.css\";\n\n.is__invalid-input {\n  @apply border border-destructive focus:border-destructive focus:outline-hidden focus:ring-transparent;\n}\n\n.is__invalid-error {\n  @apply px-1 pt-1 text-xs text-destructive;\n}"],
+  "mappings": ";AAAA,WAAW;AAEX,CAAC;AACC,SAAO,OAAO,mBAAmB,KAAK,CAAC,mBAAmB,KAAK,CAAC,eAAe,KAAK,CAAC;AACvF;AAEA,CAAC;AACC,SAAO,KAAK,KAAK,QAAQ;AAC3B;",
+  "names": []
+}

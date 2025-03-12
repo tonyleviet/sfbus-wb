@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/modules/management/components/tooltip/tooltip.component.scss"],
+  "sourcesContent": [":host {\n  display: flex;\n  width: max-content;\n  height: max-content;\n}\n.tooltip-content::after {\n  content: '';\n  position: absolute;\n  left: 15%;\n  margin-left: -5px;\n  border-width: 8px;\n  border-style: solid;\n  border-color: white transparent transparent transparent;\n}\n"],
+  "mappings": ";AAAA;AACE,WAAA;AACA,SAAA;AACA,UAAA;;AAEF,CAAA,eAAA;AACE,WAAA;AACA,YAAA;AACA,QAAA;AACA,eAAA;AACA,gBAAA;AACA,gBAAA;AACA,gBAAA,MAAA,YAAA,YAAA;;",
+  "names": []
+}
