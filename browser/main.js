@@ -45,7 +45,7 @@ import {
   en_US,
   provideAnimations,
   provideNzI18n
-} from "./chunk-5UXWPZE3.js";
+} from "./chunk-3JP6AOEX.js";
 import "./chunk-T2T4RLTU.js";
 import {
   ThemeService
@@ -56,7 +56,7 @@ import {
   NgxSonnerToaster,
   ReactiveFormsModule,
   toast
-} from "./chunk-PR73SPQS.js";
+} from "./chunk-PZA2EHSO.js";
 import {
   CredentialService
 } from "./chunk-YMBW635Q.js";
@@ -64,7 +64,7 @@ import {
   Environment,
   LoadingInterceptor,
   LoadingService
-} from "./chunk-NI3WP2DA.js";
+} from "./chunk-RBZQD2EI.js";
 import {
   AngularSvgIconModule,
   BrowserModule,
@@ -572,12 +572,12 @@ var NoAuthGuard = class _NoAuthGuard {
 var routes = [
   {
     path: "",
-    loadChildren: () => import("./layout.module-T3WQOHMJ.js").then((m) => m.LayoutModule),
+    loadChildren: () => import("./layout.module-OAHIBZV3.js").then((m) => m.LayoutModule),
     canActivate: [AuthGuard]
   },
   {
     path: "auth",
-    loadChildren: () => import("./auth.module-5KIE6JNJ.js").then((m) => m.AuthModule),
+    loadChildren: () => import("./auth.module-P2K6MM64.js").then((m) => m.AuthModule),
     canActivate: [NoAuthGuard]
   },
   {

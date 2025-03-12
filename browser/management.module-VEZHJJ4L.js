@@ -120,7 +120,7 @@ import {
   updateCSS,
   warn,
   wrapIntoObservable
-} from "./chunk-5UXWPZE3.js";
+} from "./chunk-3JP6AOEX.js";
 import "./chunk-T2T4RLTU.js";
 import {
   ClickOutsideDirective
@@ -154,16 +154,17 @@ import {
   NgForm,
   NgModel,
   NgSelectOption,
+  NumberValueAccessor,
   ReactiveFormsModule,
   Validators,
   toast,
   ɵNgNoValidate,
   ɵNgSelectMultipleOption
-} from "./chunk-PR73SPQS.js";
+} from "./chunk-PZA2EHSO.js";
 import {
   ApiGatewayService
-} from "./chunk-EKPKZCDB.js";
-import "./chunk-NI3WP2DA.js";
+} from "./chunk-YTGCPIZN.js";
+import "./chunk-RBZQD2EI.js";
 import {
   AngularSvgIconModule,
   DomSanitizer,
@@ -6322,6 +6323,8 @@ var Utils = class _Utils {
   markFormGroupTouched(formGroup) {
     Object.values(formGroup.controls).forEach((control) => {
       control.markAsTouched();
+      control.markAsDirty();
+      control.updateValueAndValidity({ onlySelf: true });
       if (control.controls) {
         this.markFormGroupTouched(control);
       }
@@ -7232,6 +7235,13 @@ var BusTypesService = class _BusTypesService {
   constructor(apiGatewayService) {
     this.apiGatewayService = apiGatewayService;
     this.url = "/bus-type";
+  }
+  findAll() {
+    const url = `${this.url}/findAll`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
   }
   searchBusType(pageIdx = 0, pageSize = 999, keyword = "", sortBy = "") {
     const url = `${this.url}/search?pageIdx=${pageIdx}&pageSize=${pageSize}&keyword=${keyword}&sortBy=${sortBy}`;
@@ -18138,6 +18148,13 @@ var BusServicesService = class _BusServicesService {
     this.filesService = filesService;
     this.url = "/bus-service";
   }
+  findAll() {
+    const url = `${this.url}/findAll`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
   searchBusService(pageIdx = 0, pageSize = 999, keyword = "", sortBy = "") {
     const url = `${this.url}/search?pageIdx=${pageIdx}&pageSize=${pageSize}&keyword=${keyword}&sortBy=${sortBy}`;
     return this.apiGatewayService.get(url).pipe(tap((res) => {
@@ -23400,10 +23417,16 @@ var BusTemplate2Create = class {
 
 // src/app/modules/management/pages/bus-templates/service/bus-templates.servive.ts
 var BusTemplatesService = class _BusTemplatesService {
-  constructor(apiGatewayService, filesService) {
+  constructor(apiGatewayService) {
     this.apiGatewayService = apiGatewayService;
-    this.filesService = filesService;
     this.url = "/bus-templates";
+  }
+  findAll() {
+    const url = `${this.url}/findAll`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
   }
   searchBusTemplate(pageIdx = 0, pageSize = 999, keyword = "", sortBy = "") {
     const url = `${this.url}/search?pageIdx=${pageIdx}&pageSize=${pageSize}&keyword=${keyword}&sortBy=${sortBy}`;
@@ -23435,7 +23458,7 @@ var BusTemplatesService = class _BusTemplatesService {
   }
   static {
     this.\u0275fac = function BusTemplatesService_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _BusTemplatesService)(\u0275\u0275inject(ApiGatewayService), \u0275\u0275inject(FilesService));
+      return new (__ngFactoryType__ || _BusTemplatesService)(\u0275\u0275inject(ApiGatewayService));
     };
   }
   static {
@@ -23583,7 +23606,6 @@ var BusTemplatesComponent = class _BusTemplatesComponent {
   editBusTemplate(busTemplate) {
     const params = { busTemplate: JSON.stringify(busTemplate) };
     this.router.navigateByUrl("/management/bus-templates/bus-tempalte-detail", { state: params });
-    console.log("\u{1F680} ~ BusTemplatesComponent ~ editBusTemplate ~ params:", params);
   }
   addBusTemplate() {
     this.router.navigate(["/management/bus-templates/bus-tempalte-detail"]);
@@ -30444,7 +30466,7 @@ var BusTemplateDetailComponent = class _BusTemplateDetailComponent {
         let _t;
         \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.cellInput = _t.first);
       }
-    }, standalone: false, decls: 6, vars: 1, consts: [["busTemplateDetailNameClearTpl", ""], ["busTemplateDetailNameErrorTpl", ""], ["nzAddIcon", ""], ["busTemplateLayoutNameClearTpl", ""], ["busTemplateLayoutNameErrorTpl", ""], ["cellInput", ""], [1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], [1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "px-6", "py-2"], ["class", "sm:min-w-36 md:min-w-96", "nz-form", "", 3, "formGroup", 4, "ngIf"], ["nz-form", "", 1, "sm:min-w-36", "md:min-w-96", 3, "formGroup"], [1, "mb-5", "w-full"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start", 3, "nzSpan"], [1, "!flex", "!h-[56px]", "flex-col", 3, "nzErrorTip"], [1, "custom-nz-input-group", "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], ["type", "text", "nz-input", "", "formControlName", "name", "placeholder", "Nh\u1EADp Name"], ["formArrayName", "layouts", 4, "ngIf"], [1, "my-5", "flex", "w-full", "justify-end"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!bg-primary", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "!text-white", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], ["nz-icon", "", "nzTheme", "fill", "nzType", "close-circle", 1, "ant-input-clear-icon", 3, "click"], [1, "mt-1", "!text-xs", "text-red-500"], ["formArrayName", "layouts"], ["nzType", "editable-card", 3, "nzSelectedIndexChange", "nzAdd", "nzClose", "nzSelectedIndex", "nzAddIcon"], ["nzClosable", "", 3, "formGroupName", "nzTitle", 4, "ngFor", "ngForOf"], ["nzClosable", "", 3, "formGroupName", "nzTitle"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start", "!font-medium", 3, "nzSpan"], [1, "!flex", "!h-[56px]", "flex-col", "!pt-2", 3, "nzErrorTip"], [1, "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], [1, "flex", "flex-col", "pt-5"], [1, "flex", "justify-between"], [1, "font-medium"], [1, "flex", "gap-4"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], ["class", "!min-w-24 !flex !h-max !justify-center !rounded-lg !py-2 !px-3 hover:!bg-blue-200", "nz-button", "", "nzType", "default", 3, "ngClass", "click", 4, "ngFor", "ngForOf"], [1, "matrix", "justify-center", "pt-10"], ["class", "row", 4, "ngFor", "ngForOf"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!bg-blue-200", 3, "click", "ngClass"], [3, "src", "svgClass"], [1, "row"], [3, "id", "class", 4, "ngFor", "ngForOf"], [3, "id"], [3, "mousedown", "mouseup", "mouseleave", "contextmenu", "click"], [4, "ngIf"], ["class", "absolute", 4, "ngIf"], [3, "src", "svgClass", "ngClass"], ["class", "cell-name", 4, "ngIf"], [1, "cell-name"], [1, "absolute"], [1, "cell-input", 3, "ngModelChange", "blur", "keydown.enter", "ngModel", "ngModelOptions"], [1, "flex", "flex-row"], ["src", "assets/icons/create-new-layout.svg", 3, "svgClass"]], template: function BusTemplateDetailComponent_Template(rf, ctx) {
+    }, standalone: false, decls: 6, vars: 1, consts: [["busTemplateDetailNameClearTpl", ""], ["busTemplateDetailNameErrorTpl", ""], ["nzAddIcon", ""], ["busTemplateLayoutNameClearTpl", ""], ["busTemplateLayoutNameErrorTpl", ""], ["cellInput", ""], [1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], [1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "px-6", "py-2"], ["nz-form", "", 3, "formGroup", 4, "ngIf"], ["nz-form", "", 3, "formGroup"], [1, "mb-5", "w-full"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start", 3, "nzSpan"], [1, "!flex", "!h-[56px]", "flex-col", 3, "nzErrorTip"], [1, "custom-nz-input-group", "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], ["type", "text", "nz-input", "", "formControlName", "name", "placeholder", "Nh\u1EADp Name"], ["formArrayName", "layouts", 4, "ngIf"], [1, "my-5", "flex", "w-full", "justify-end"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!bg-primary", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "!text-white", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], ["nz-icon", "", "nzTheme", "fill", "nzType", "close-circle", 1, "ant-input-clear-icon", 3, "click"], [1, "mt-1", "!text-xs", "text-red-500"], ["formArrayName", "layouts"], ["nzType", "editable-card", 3, "nzSelectedIndexChange", "nzAdd", "nzClose", "nzSelectedIndex", "nzAddIcon"], ["nzClosable", "", 3, "formGroupName", "nzTitle", 4, "ngFor", "ngForOf"], ["nzClosable", "", 3, "formGroupName", "nzTitle"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start", "!font-medium", 3, "nzSpan"], [1, "!flex", "!h-[56px]", "flex-col", "!pt-2", 3, "nzErrorTip"], [1, "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], [1, "flex", "flex-col", "pt-5"], [1, "flex", "justify-between"], [1, "font-medium"], [1, "flex", "gap-4"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], ["class", "!min-w-24 !flex !h-max !justify-center !rounded-lg !py-2 !px-3 hover:!bg-blue-200", "nz-button", "", "nzType", "default", 3, "ngClass", "click", 4, "ngFor", "ngForOf"], [1, "matrix", "justify-center", "pt-10"], ["class", "row", 4, "ngFor", "ngForOf"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!bg-blue-200", 3, "click", "ngClass"], [3, "src", "svgClass"], [1, "row"], [3, "id", "class", 4, "ngFor", "ngForOf"], [3, "id"], [3, "mousedown", "mouseup", "mouseleave", "contextmenu", "click"], [4, "ngIf"], ["class", "absolute", 4, "ngIf"], [3, "src", "svgClass", "ngClass"], ["class", "cell-name", 4, "ngIf"], [1, "cell-name"], [1, "absolute"], [1, "cell-input", 3, "ngModelChange", "blur", "keydown.enter", "ngModel", "ngModelOptions"], [1, "flex", "flex-row"], ["src", "assets/icons/create-new-layout.svg", 3, "svgClass"]], template: function BusTemplateDetailComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275elementStart(0, "div", 6)(1, "div", 7)(2, "button", 8);
         \u0275\u0275listener("click", function BusTemplateDetailComponent_Template_button_click_2_listener() {
@@ -31821,106 +31843,9 @@ var SearchBus = class {
     this.totalPage = 0;
   }
 };
-var Bus2Create = class {
-};
-
-// src/app/modules/management/pages/buses/component/create-edit-bus-dialog/create-bus-dialog.component.ts
-var _c025 = (a0) => ({ "!border-red-500": a0 });
-function CreateEditBusDialogComponent_p_12_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "p", 13);
-    \u0275\u0275text(1, " Vui l\xF2ng \u0111i\u1EC1n v\xE0o tr\u01B0\u1EDDng n\xE0y ");
-    \u0275\u0275elementEnd();
-  }
-}
-var CreateEditBusDialogComponent = class _CreateEditBusDialogComponent {
-  constructor(fb, utils) {
-    this.fb = fb;
-    this.utils = utils;
-    this.dialogRef = inject(MatDialogRef);
-    this.data = inject(MAT_DIALOG_DATA);
-    this.busProvince = this.data.busProvince ?? new Bus2Create();
-  }
-  ngOnInit() {
-    this.initForm();
-  }
-  initForm() {
-    return __async(this, null, function* () {
-      console.log("\u{1F680} ~ CreateEditBusDialogComponent ~ initForm ~ this.busProvince:", this.busProvince);
-      this.busProvinceForm = this.fb.group({
-        name: [this.busProvince.name, [Validators.required]]
-      });
-    });
-  }
-  closeDialog() {
-    this.dialogRef.close();
-  }
-  onSubmit() {
-    if (!this.busProvinceForm.valid) {
-      this.utils.markFormGroupTouched(this.busProvinceForm);
-      return;
-    }
-    const { name: name2 } = this.busProvinceForm.getRawValue();
-    const data = __spreadProps(__spreadValues({}, this.busProvince), {
-      name: name2
-    });
-    this.dialogRef.close(data);
-  }
-  static {
-    this.\u0275fac = function CreateEditBusDialogComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _CreateEditBusDialogComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(Utils));
-    };
-  }
-  static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _CreateEditBusDialogComponent, selectors: [["app-create-bus-dialog"]], standalone: false, decls: 16, vars: 7, consts: [[1, "text-center"], [1, "text-xl", "font-bold"], [1, "absolute", "right-3", 3, "matDialogClose"], ["xmlns", "http://www.w3.org/2000/svg", "viewBox", "0 0 24 24", "fill", "currentColor", 1, "size-6"], ["fill-rule", "evenodd", "d", "M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z", "clip-rule", "evenodd"], [1, "pb-5", "pt-3"], [1, "sm:min-w-36", "md:min-w-96", "mx-auto", 3, "ngSubmit", "formGroup"], [1, "mb-5"], ["for", "base-input", 1, "mb-2", "block", "text-sm", "font-medium", "text-gray-900", "dark:text-white"], ["type", "text", "id", "busType-name", "formControlName", "name", 1, "block", "w-full", "rounded-lg", "border", "border-gray-300", "bg-gray-50", "p-2.5", "text-sm", "text-gray-900", "focus:border-blue-500", "focus:ring-blue-500", "dark:border-gray-600", "dark:bg-gray-700", "dark:text-white", "dark:placeholder-gray-400", "dark:focus:border-blue-500", "dark:focus:ring-blue-500", 3, "ngClass"], ["class", "mt-1 text-xs text-red-500", 4, "ngIf"], [1, "line-block", "space-x-4", "text-center"], [1, "bg-primary", "text-primary-foreground", "flex-none", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click", "matDialogClose"], [1, "mt-1", "text-xs", "text-red-500"]], template: function CreateEditBusDialogComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275elementStart(0, "mat-dialog-title", 0)(1, "span", 1);
-        \u0275\u0275text(2);
-        \u0275\u0275elementEnd();
-        \u0275\u0275elementStart(3, "button", 2);
-        \u0275\u0275namespaceSVG();
-        \u0275\u0275elementStart(4, "svg", 3);
-        \u0275\u0275element(5, "path", 4);
-        \u0275\u0275elementEnd()()();
-        \u0275\u0275namespaceHTML();
-        \u0275\u0275elementStart(6, "mat-dialog-content", 5)(7, "form", 6);
-        \u0275\u0275listener("ngSubmit", function CreateEditBusDialogComponent_Template_form_ngSubmit_7_listener() {
-          return ctx.onSubmit();
-        });
-        \u0275\u0275elementStart(8, "div", 7)(9, "label", 8);
-        \u0275\u0275text(10, "NAME");
-        \u0275\u0275elementEnd();
-        \u0275\u0275element(11, "input", 9);
-        \u0275\u0275template(12, CreateEditBusDialogComponent_p_12_Template, 2, 0, "p", 10);
-        \u0275\u0275elementEnd()()();
-        \u0275\u0275elementStart(13, "mat-dialog-actions", 11)(14, "button", 12);
-        \u0275\u0275listener("click", function CreateEditBusDialogComponent_Template_button_click_14_listener() {
-          return ctx.onSubmit();
-        });
-        \u0275\u0275text(15, " SAVE ");
-        \u0275\u0275elementEnd()();
-      }
-      if (rf & 2) {
-        \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate(ctx.data.title);
-        \u0275\u0275advance(5);
-        \u0275\u0275property("formGroup", ctx.busProvinceForm);
-        \u0275\u0275advance(4);
-        \u0275\u0275property("ngClass", \u0275\u0275pureFunction1(5, _c025, (ctx.busProvinceForm.controls["name"].errors == null ? null : ctx.busProvinceForm.controls["name"].errors["required"]) && ctx.busProvinceForm.controls["name"].touched));
-        \u0275\u0275advance();
-        \u0275\u0275property("ngIf", (ctx.busProvinceForm.controls["name"].errors == null ? null : ctx.busProvinceForm.controls["name"].errors["required"]) && ctx.busProvinceForm.controls["name"].touched);
-        \u0275\u0275advance(2);
-        \u0275\u0275property("matDialogClose", ctx.busProvince);
-      }
-    }, dependencies: [NgClass, NgIf, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, MatDialogClose, MatDialogActions, MatDialogContent], styles: ["\n\n.action-preview-img[_ngcontent-%COMP%]:hover {\n  opacity: 1;\n  background: rgba(0, 0, 0, 0.5);\n}\n/*# sourceMappingURL=create-bus-dialog.component.css.map */"] });
-  }
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(CreateEditBusDialogComponent, { className: "CreateEditBusDialogComponent", filePath: "src/app/modules/management/pages/buses/component/create-edit-bus-dialog/create-bus-dialog.component.ts", lineNumber: 18 });
-})();
 
 // src/app/modules/management/pages/buses/service/buses.servive.ts
-var BusService = class _BusService {
+var BusesService = class _BusesService {
   constructor(apiGatewayService) {
     this.apiGatewayService = apiGatewayService;
     this.url = "/buses";
@@ -31939,16 +31864,16 @@ var BusService = class _BusService {
       return of([]);
     }));
   }
-  createBus(busServiceIconFile, busService2Create) {
+  createBus(busService2Create) {
     const url = this.url;
     return this.apiGatewayService.post(url, busService2Create).pipe(tap((res) => {
     }), catchError((error2) => {
       return of([]);
     }));
   }
-  updateBus(busService2Update) {
+  updateBus(bus2Update) {
     const url = this.url;
-    return this.apiGatewayService.put(url, busService2Update).pipe(tap((res) => {
+    return this.apiGatewayService.put(url, bus2Update).pipe(tap((res) => {
     }), catchError((error2) => {
       return of([]);
     }));
@@ -31961,12 +31886,12 @@ var BusService = class _BusService {
     }));
   }
   static {
-    this.\u0275fac = function BusService_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _BusService)(\u0275\u0275inject(ApiGatewayService));
+    this.\u0275fac = function BusesService_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusesService)(\u0275\u0275inject(ApiGatewayService));
     };
   }
   static {
-    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _BusService, factory: _BusService.\u0275fac, providedIn: "root" });
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _BusesService, factory: _BusesService.\u0275fac, providedIn: "root" });
   }
 };
 
@@ -31977,8 +31902,8 @@ function BusesComponent_For_22_Template(rf, ctx) {
     const _r1 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "tr", 13)(1, "td", 15)(2, "input", 16);
     \u0275\u0275twoWayListener("ngModelChange", function BusesComponent_For_22_Template_input_ngModelChange_2_listener($event) {
-      const busProvince_r2 = \u0275\u0275restoreView(_r1).$implicit;
-      \u0275\u0275twoWayBindingSet(busProvince_r2.selected, $event) || (busProvince_r2.selected = $event);
+      const bus_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      \u0275\u0275twoWayBindingSet(bus_r2.selected, $event) || (bus_r2.selected = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275listener("change", function BusesComponent_For_22_Template_input_change_2_listener() {
@@ -31995,9 +31920,9 @@ function BusesComponent_For_22_Template(rf, ctx) {
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(7, "td", 15)(8, "button", 17);
     \u0275\u0275listener("click", function BusesComponent_For_22_Template_button_click_8_listener() {
-      const busProvince_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const bus_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.editBus(busProvince_r2));
+      return \u0275\u0275resetView(ctx_r2.editBus(bus_r2));
     });
     \u0275\u0275namespaceSVG();
     \u0275\u0275elementStart(9, "svg", 18);
@@ -32006,9 +31931,9 @@ function BusesComponent_For_22_Template(rf, ctx) {
     \u0275\u0275namespaceHTML();
     \u0275\u0275elementStart(11, "button", 20);
     \u0275\u0275listener("click", function BusesComponent_For_22_Template_button_click_11_listener() {
-      const busProvince_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const bus_r2 = \u0275\u0275restoreView(_r1).$implicit;
       const ctx_r2 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r2.deleteBus(busProvince_r2._id));
+      return \u0275\u0275resetView(ctx_r2.deleteBus(bus_r2._id));
     });
     \u0275\u0275namespaceSVG();
     \u0275\u0275elementStart(12, "svg", 18);
@@ -32016,28 +31941,29 @@ function BusesComponent_For_22_Template(rf, ctx) {
     \u0275\u0275elementEnd()()()();
   }
   if (rf & 2) {
-    const busProvince_r2 = ctx.$implicit;
+    const bus_r2 = ctx.$implicit;
     \u0275\u0275advance(2);
-    \u0275\u0275twoWayProperty("ngModel", busProvince_r2.selected);
-    \u0275\u0275attribute("aria-label", "Select " + busProvince_r2.name);
+    \u0275\u0275twoWayProperty("ngModel", bus_r2.selected);
+    \u0275\u0275attribute("aria-label", "Select " + bus_r2.name);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(busProvince_r2.name);
+    \u0275\u0275textInterpolate(bus_r2.name);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(busProvince_r2.licensePlate);
+    \u0275\u0275textInterpolate(bus_r2.licensePlate);
   }
 }
 function BusesComponent_ForEmpty_23_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "tr")(1, "td", 22);
-    \u0275\u0275text(2, "No busProvinces found");
+    \u0275\u0275text(2, "No buss found");
     \u0275\u0275elementEnd()();
   }
 }
 var BusesComponent = class _BusesComponent {
-  constructor(busService, dialog, utils) {
-    this.busService = busService;
+  constructor(busesService, dialog, utils, router) {
+    this.busesService = busesService;
     this.dialog = dialog;
     this.utils = utils;
+    this.router = router;
     this.searchBus = new SearchBus();
     this.selectAll = false;
     this.pageIdx = 1;
@@ -32053,11 +31979,11 @@ var BusesComponent = class _BusesComponent {
   }
   loadData() {
     this.isLoadingBus = true;
-    this.busService.searchBus(this.pageIdx, this.pageSize, this.keyword, this.sortBy).subscribe({
+    this.busesService.searchBus(this.pageIdx, this.pageSize, this.keyword, this.sortBy).subscribe({
       next: (res) => {
         if (res) {
           this.searchBus = res;
-          console.log("\u{1F680} ~ BusesComponent ~ this.busService.searchBus ~ this.searchBus:", this.searchBus);
+          console.log("\u{1F680} ~ BusesComponent ~ this.busesService.searchBus ~ this.searchBus:", this.searchBus);
           this.totalItem = this.searchBus.totalItem;
           this.totalPage = this.searchBus.totalPage;
         }
@@ -32100,7 +32026,7 @@ var BusesComponent = class _BusesComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.busService.deleteBus(id).subscribe({
+        this.busesService.deleteBus(id).subscribe({
           next: (res) => {
             if (res) {
               this.searchBus.buses = this.searchBus.buses.filter((bus) => bus._id !== id);
@@ -32113,47 +32039,11 @@ var BusesComponent = class _BusesComponent {
     });
   }
   editBus(bus) {
-    const dialogRef = this.dialog.open(CreateEditBusDialogComponent, {
-      data: {
-        title: "Edit Bus Province",
-        bus: __spreadValues({}, bus)
-      }
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.busService.updateBus(result).subscribe({
-          next: (res) => {
-            if (res) {
-              this.searchBus.buses = this.searchBus.buses.map((bus2) => bus2._id === res._id ? __spreadValues(__spreadValues({}, bus2), res) : bus2);
-              toast.success("Bus updated successfully");
-            }
-          },
-          error: (error2) => this.utils.handleRequestError(error2)
-        });
-      }
-    });
+    const params = { bus: JSON.stringify(bus) };
+    this.router.navigateByUrl("/management/buses/bus-detail", { state: params });
   }
   addBus() {
-    const dialogRef = this.dialog.open(CreateEditBusDialogComponent, {
-      data: {
-        title: "Add New Bus"
-      }
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        const bus2Create = new Bus2Create();
-        bus2Create.name = result.name;
-        this.busService.createBus(result.file, bus2Create).subscribe({
-          next: (res) => {
-            if (res) {
-              this.loadData();
-              toast.success("Bus added successfully");
-            }
-          },
-          error: (error2) => this.utils.handleRequestError(error2)
-        });
-      }
-    });
+    this.router.navigate(["/management/buses/bus-detail"]);
   }
   reloadBusPage(data) {
     this.pageIdx = data.pageIdx;
@@ -32184,11 +32074,11 @@ var BusesComponent = class _BusesComponent {
   }
   static {
     this.\u0275fac = function BusesComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _BusesComponent)(\u0275\u0275directiveInject(BusService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(Utils));
+      return new (__ngFactoryType__ || _BusesComponent)(\u0275\u0275directiveInject(BusesService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(Utils), \u0275\u0275directiveInject(Router));
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusesComponent, selectors: [["app-buses"]], standalone: false, decls: 25, vars: 9, consts: [[1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], ["aria-label", "Import CSV", 1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold"], ["aria-label", "Add Bus", 1, "bg-primary", "text-primary-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "p-2"], [3, "sortDataEvent", "searchDataEvent", "title", "totalItem"], [1, "overflow-x-auto"], [1, "text-muted-foreground", "w-full", "table-auto", "border-collapse", "text-left", "align-middle", "leading-5"], [1, "border-muted/20", "text-muted-foreground", "border", "text-xs"], [1, "w-[50px]"], ["type", "checkbox", "aria-label", "Select all busProvinces", 1, "checkbox", "checkbox-sm", 3, "change", "ngModelChange", "ngModel"], [1, "min-w-[200px]"], [1, "w-[100px]", "text-center"], [1, "hover:bg-card/50"], [3, "reloadDataAndPageEvent", "pageIdx", "pageSize", "totalItem", "isLoading", "totalPage"], [1, "text-center"], ["type", "checkbox", 1, "checkbox", "checkbox-sm", 3, "ngModelChange", "change", "ngModel"], ["aria-label", "Edit busProvince", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["viewBox", "0 0 20 20", "fill", "currentColor", 1, "size-5"], ["d", "m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z"], ["aria-label", "Delete busProvince", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["fill-rule", "evenodd", "d", "M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z", "clip-rule", "evenodd"], ["colspan", "4", 1, "py-4", "text-center", "text-sm"]], template: function BusesComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusesComponent, selectors: [["app-buses"]], standalone: false, decls: 25, vars: 9, consts: [[1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], ["aria-label", "Import CSV", 1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold"], ["aria-label", "Add Bus", 1, "bg-primary", "text-primary-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "p-2"], [3, "sortDataEvent", "searchDataEvent", "title", "totalItem"], [1, "overflow-x-auto"], [1, "text-muted-foreground", "w-full", "table-auto", "border-collapse", "text-left", "align-middle", "leading-5"], [1, "border-muted/20", "text-muted-foreground", "border", "text-xs"], [1, "w-[50px]"], ["type", "checkbox", "aria-label", "Select all bus", 1, "checkbox", "checkbox-sm", 3, "change", "ngModelChange", "ngModel"], [1, "min-w-[200px]"], [1, "w-[100px]", "text-center"], [1, "hover:bg-card/50"], [3, "reloadDataAndPageEvent", "pageIdx", "pageSize", "totalItem", "isLoading", "totalPage"], [1, "text-center"], ["type", "checkbox", 1, "checkbox", "checkbox-sm", 3, "ngModelChange", "change", "ngModel"], ["aria-label", "Edit bus", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["viewBox", "0 0 20 20", "fill", "currentColor", 1, "size-5"], ["d", "m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z"], ["aria-label", "Delete bus", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["fill-rule", "evenodd", "d", "M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z", "clip-rule", "evenodd"], ["colspan", "4", 1, "py-4", "text-center", "text-sm"]], template: function BusesComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "button", 2);
         \u0275\u0275text(3, " Import CSV ");
@@ -32250,6 +32140,2090 @@ var BusesComponent = class _BusesComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BusesComponent, { className: "BusesComponent", filePath: "src/app/modules/management/pages/buses/buses.component.ts", lineNumber: 16 });
 })();
 
+// src/app/modules/management/pages/buses/pages/bus-detail/bus-detail.component.ts
+function BusDetailComponent_form_5_ng_template_9_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 33);
+    \u0275\u0275listener("click", function BusDetailComponent_form_5_ng_template_9_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busDetailForm.controls["name"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusDetailComponent_form_5_ng_template_11_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusDetailComponent_form_5_ng_template_11_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 34);
+    \u0275\u0275template(1, BusDetailComponent_form_5_ng_template_11_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busDetailForm.controls["name"].errors == null ? null : ctx_r1.busDetailForm.controls["name"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusDetailComponent_form_5_ng_template_20_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r4 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 33);
+    \u0275\u0275listener("click", function BusDetailComponent_form_5_ng_template_20_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r4);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busDetailForm.controls["licensePlate"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusDetailComponent_form_5_ng_template_22_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusDetailComponent_form_5_ng_template_22_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 34);
+    \u0275\u0275template(1, BusDetailComponent_form_5_ng_template_22_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busDetailForm.controls["licensePlate"].errors == null ? null : ctx_r1.busDetailForm.controls["licensePlate"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusDetailComponent_form_5_For_32_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option", 25)(1, "div", 35);
+    \u0275\u0275element(2, "svg-icon", 36);
+    \u0275\u0275elementStart(3, "span", 37);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busService_r5 = ctx.$implicit;
+    \u0275\u0275property("nzLabel", busService_r5.name)("nzValue", busService_r5._id);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("src", busService_r5.icon)("svgClass", "h-5 w-5");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", busService_r5.name, " ");
+  }
+}
+function BusDetailComponent_form_5_ng_template_33_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng ch\u1ECDn Bus Services");
+  }
+}
+function BusDetailComponent_form_5_ng_template_33_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 34);
+    \u0275\u0275template(1, BusDetailComponent_form_5_ng_template_33_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busDetailForm.controls["busServiceIds"].errors == null ? null : ctx_r1.busDetailForm.controls["busServiceIds"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusDetailComponent_form_5_For_42_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option", 25)(1, "div", 35)(2, "span", 37);
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busTypes_r6 = ctx.$implicit;
+    \u0275\u0275property("nzLabel", busTypes_r6.name)("nzValue", busTypes_r6._id);
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", busTypes_r6.name, " ");
+  }
+}
+function BusDetailComponent_form_5_ng_template_43_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng ch\u1ECDn Bus Type");
+  }
+}
+function BusDetailComponent_form_5_ng_template_43_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 34);
+    \u0275\u0275template(1, BusDetailComponent_form_5_ng_template_43_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busDetailForm.controls["busTypeId"].errors == null ? null : ctx_r1.busDetailForm.controls["busTypeId"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusDetailComponent_form_5_For_53_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option", 25)(1, "div", 35)(2, "span", 37);
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busTemplate_r7 = ctx.$implicit;
+    \u0275\u0275property("nzLabel", busTemplate_r7.name)("nzValue", busTemplate_r7._id);
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", busTemplate_r7.name, " ");
+  }
+}
+function BusDetailComponent_form_5_ng_template_54_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng ch\u1ECDn Bus Tempate");
+  }
+}
+function BusDetailComponent_form_5_ng_template_54_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 34);
+    \u0275\u0275template(1, BusDetailComponent_form_5_ng_template_54_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busDetailForm.controls["busTemplateId"].errors == null ? null : ctx_r1.busDetailForm.controls["busTemplateId"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusDetailComponent_form_5_div_56_ng_container_6_div_2_div_9_div_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 52);
+    \u0275\u0275element(1, "svg-icon", 53);
+    \u0275\u0275elementStart(2, "div", 54);
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const cell_r9 = ctx.$implicit;
+    const j_r10 = ctx.index;
+    const layoutForMatrix_r11 = \u0275\u0275nextContext(2).$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(4);
+    \u0275\u0275styleProp("display", layoutForMatrix_r11.seatVisibleColumns[j_r10] ? "flex" : "none")("visibility", cell_r9.typeId ? "visible" : "hidden");
+    \u0275\u0275classProp("status-changed", cell_r9.statusChanged)("status-deselected", cell_r9.statusDeselected);
+    \u0275\u0275advance();
+    \u0275\u0275property("svgClass", "icon !h-[40px] !w-[40px]")("src", ctx_r1.getIconByType(cell_r9));
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(cell_r9.name);
+  }
+}
+function BusDetailComponent_form_5_div_56_ng_container_6_div_2_div_9_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 50);
+    \u0275\u0275template(1, BusDetailComponent_form_5_div_56_ng_container_6_div_2_div_9_div_1_Template, 4, 11, "div", 51);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const row_r12 = ctx.$implicit;
+    const i_r13 = ctx.index;
+    const layoutForMatrix_r11 = \u0275\u0275nextContext().$implicit;
+    \u0275\u0275styleProp("display", layoutForMatrix_r11.seatDisplayRows[i_r13] ? "flex" : "none");
+    \u0275\u0275advance();
+    \u0275\u0275property("ngForOf", row_r12);
+  }
+}
+function BusDetailComponent_form_5_div_56_ng_container_6_div_2_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div")(1, "div", 44)(2, "div", 45)(3, "label", 46);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(5, "div", 47)(6, "div")(7, "div")(8, "div", 48);
+    \u0275\u0275template(9, BusDetailComponent_form_5_div_56_ng_container_6_div_2_div_9_Template, 2, 3, "div", 49);
+    \u0275\u0275elementEnd()()()()();
+  }
+  if (rf & 2) {
+    const layoutForMatrix_r11 = ctx.$implicit;
+    \u0275\u0275advance(4);
+    \u0275\u0275textInterpolate(layoutForMatrix_r11.name);
+    \u0275\u0275advance(5);
+    \u0275\u0275property("ngForOf", layoutForMatrix_r11.seatsLayoutForMatrix);
+  }
+}
+function BusDetailComponent_form_5_div_56_ng_container_6_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementContainerStart(0);
+    \u0275\u0275elementStart(1, "div", 42);
+    \u0275\u0275template(2, BusDetailComponent_form_5_div_56_ng_container_6_div_2_Template, 10, 2, "div", 43);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementContainerEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(3);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngForOf", ctx_r1.busTemplateReview.layoutsForMatrix);
+  }
+}
+function BusDetailComponent_form_5_div_56_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r8 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 38)(1, "div", 39)(2, "label");
+    \u0275\u0275text(3, "Bus Tempalte Review");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "button", 40);
+    \u0275\u0275listener("click", function BusDetailComponent_form_5_div_56_Template_button_click_4_listener() {
+      \u0275\u0275restoreView(_r8);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.editBusTempate());
+    });
+    \u0275\u0275text(5, " Edit BusTempate ");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275template(6, BusDetailComponent_form_5_div_56_ng_container_6_Template, 3, 1, "ng-container", 41);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance(6);
+    \u0275\u0275property("ngIf", ctx_r1.busTemplateReview == null ? null : ctx_r1.busTemplateReview.layoutsForMatrix);
+  }
+}
+function BusDetailComponent_form_5_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "form", 12);
+    \u0275\u0275listener("ngSubmit", function BusDetailComponent_form_5_Template_form_ngSubmit_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.onSubmit());
+    });
+    \u0275\u0275elementStart(1, "div", 13)(2, "div", 14)(3, "nz-form-item", 15)(4, "nz-form-label", 16);
+    \u0275\u0275text(5, "Name");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "nz-form-control", 17)(7, "nz-input-group", 18);
+    \u0275\u0275element(8, "input", 19);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(9, BusDetailComponent_form_5_ng_template_9_Template, 1, 0, "ng-template", null, 0, \u0275\u0275templateRefExtractor)(11, BusDetailComponent_form_5_ng_template_11_Template, 2, 1, "ng-template", null, 1, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(13, "div", 14)(14, "nz-form-item", 15)(15, "nz-form-label", 20);
+    \u0275\u0275text(16, "License Plate");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(17, "nz-form-control", 17)(18, "nz-input-group", 18);
+    \u0275\u0275element(19, "input", 21);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(20, BusDetailComponent_form_5_ng_template_20_Template, 1, 0, "ng-template", null, 2, \u0275\u0275templateRefExtractor)(22, BusDetailComponent_form_5_ng_template_22_Template, 2, 1, "ng-template", null, 3, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(24, "div", 13)(25, "div", 14)(26, "nz-form-item", 15)(27, "nz-form-label", 22);
+    \u0275\u0275text(28, "Bus Services");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(29, "nz-form-control", 23)(30, "nz-select", 24);
+    \u0275\u0275repeaterCreate(31, BusDetailComponent_form_5_For_32_Template, 5, 5, "nz-option", 25, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(33, BusDetailComponent_form_5_ng_template_33_Template, 2, 1, "ng-template", null, 4, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(35, "div", 14)(36, "nz-form-item", 15)(37, "nz-form-label", 26);
+    \u0275\u0275text(38, "Bus Types");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(39, "nz-form-control", 23)(40, "nz-select", 27);
+    \u0275\u0275repeaterCreate(41, BusDetailComponent_form_5_For_42_Template, 4, 3, "nz-option", 25, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(43, BusDetailComponent_form_5_ng_template_43_Template, 2, 1, "ng-template", null, 5, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(45, "div", 13)(46, "div", 14)(47, "nz-form-item", 15)(48, "nz-form-label", 28);
+    \u0275\u0275text(49, "Bus Template");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(50, "nz-form-control", 23)(51, "nz-select", 29);
+    \u0275\u0275listener("ngModelChange", function BusDetailComponent_form_5_Template_nz_select_ngModelChange_51_listener($event) {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.chooseBusTemplate($event));
+    });
+    \u0275\u0275repeaterCreate(52, BusDetailComponent_form_5_For_53_Template, 4, 3, "nz-option", 25, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(54, BusDetailComponent_form_5_ng_template_54_Template, 2, 1, "ng-template", null, 6, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275template(56, BusDetailComponent_form_5_div_56_Template, 7, 1, "div", 30);
+    \u0275\u0275elementStart(57, "div", 31)(58, "button", 32);
+    \u0275\u0275text(59, " SAVE ");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busTemplateDetailNameClearTpl_r14 = \u0275\u0275reference(10);
+    const busTemplateDetailNameErrorTpl_r15 = \u0275\u0275reference(12);
+    const busTemplateDetailLicensePlateClearTpl_r16 = \u0275\u0275reference(21);
+    const busTemplateDetailLicensePlateErrorTpl_r17 = \u0275\u0275reference(23);
+    const busTemplateDetailBusServiceIdsErrorTpl_r18 = \u0275\u0275reference(34);
+    const busTemplateDetailBusTypeIdErrorTpl_r19 = \u0275\u0275reference(44);
+    const busTemplateDetailBusTemplateIdErrorTpl_r20 = \u0275\u0275reference(55);
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("formGroup", ctx_r1.busDetailForm);
+    \u0275\u0275advance(6);
+    \u0275\u0275property("nzErrorTip", busTemplateDetailNameErrorTpl_r15);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busTemplateDetailNameClearTpl_r14);
+    \u0275\u0275advance(10);
+    \u0275\u0275property("nzErrorTip", busTemplateDetailLicensePlateErrorTpl_r17);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busTemplateDetailLicensePlateClearTpl_r16);
+    \u0275\u0275advance(11);
+    \u0275\u0275property("nzErrorTip", busTemplateDetailBusServiceIdsErrorTpl_r18);
+    \u0275\u0275advance(2);
+    \u0275\u0275repeater(ctx_r1.busServices);
+    \u0275\u0275advance(6);
+    \u0275\u0275property("nzSpan", 6);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("nzErrorTip", busTemplateDetailBusTypeIdErrorTpl_r19);
+    \u0275\u0275advance(2);
+    \u0275\u0275repeater(ctx_r1.busTypes);
+    \u0275\u0275advance(7);
+    \u0275\u0275property("nzSpan", 6);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("nzErrorTip", busTemplateDetailBusTemplateIdErrorTpl_r20);
+    \u0275\u0275advance(2);
+    \u0275\u0275repeater(ctx_r1.busTemplates);
+    \u0275\u0275advance(4);
+    \u0275\u0275property("ngIf", ctx_r1.busDetailForm.controls["busTemplateId"].value);
+  }
+}
+var BusDetailComponent = class _BusDetailComponent {
+  constructor(fb, utils, location, busServicesService, busTypesService, busTemplatesService, seatTypesService, busesService, router) {
+    this.fb = fb;
+    this.utils = utils;
+    this.location = location;
+    this.busServicesService = busServicesService;
+    this.busTypesService = busTypesService;
+    this.busTemplatesService = busTemplatesService;
+    this.seatTypesService = seatTypesService;
+    this.busesService = busesService;
+    this.router = router;
+    this.busServices = [];
+    this.busTypes = [];
+    this.busTemplates = [];
+    this.seatTypes = [];
+    this.rows = 11;
+    this.cols = 7;
+  }
+  ngOnInit() {
+    this.getQueryParams();
+    this.initData();
+  }
+  getQueryParams() {
+    return __async(this, null, function* () {
+      const params = history.state;
+      if (params) {
+        this.bus = params["bus"] ? JSON.parse(params["bus"]) : null;
+      }
+    });
+  }
+  initData() {
+    let findAllBusService = this.busServicesService.findAll();
+    let findAllBusType = this.busTypesService.findAll();
+    let findAllBusTemplate = this.busTemplatesService.findAll();
+    let findAllSeatType = this.seatTypesService.findAll();
+    let request = [findAllBusService, findAllBusType, findAllBusTemplate, findAllSeatType];
+    combineLatest(request).subscribe((_0) => __async(this, [_0], function* ([busServices, busTypes, busTemplates, seatTypes]) {
+      this.busServices = busServices;
+      this.busTypes = busTypes;
+      this.busTemplates = busTemplates;
+      this.seatTypes = seatTypes;
+      this.initForm();
+    }));
+  }
+  initForm() {
+    return __async(this, null, function* () {
+      this.busDetailForm = this.fb.group({
+        name: [this.bus?.name ?? "", [Validators.required]],
+        licensePlate: [this.bus?.licensePlate ?? "", [Validators.required]],
+        busServiceIds: [this.bus?.busServiceIds ?? [], [Validators.required]],
+        busTypeId: [this.bus?.busTypeId ?? "", [Validators.required]],
+        busTemplateId: [this.bus?.busTemplateId ?? "", [Validators.required]]
+      });
+      if (this.busDetailForm.get("busTemplateId")?.value) {
+        this.chooseBusTemplate(this.busDetailForm.get("busTemplateId")?.value);
+      }
+    });
+  }
+  chooseBusTemplate(busTemplateId) {
+    return __async(this, null, function* () {
+      this.busTemplateReview = this.busTemplates.find((busTemplate) => busTemplate._id === busTemplateId);
+      this.busTemplateReview.layoutsForMatrix = [];
+      yield this.initializeMatrix(this.busTemplateReview.seatLayouts, this.busTemplateReview.layoutsForMatrix, (layouts) => {
+        this.busTemplateReview.layoutsForMatrix = layouts;
+      });
+    });
+  }
+  initializeMatrix(seatLayouts, layoutsForMatrix, out) {
+    return __async(this, null, function* () {
+      for (const seatLayout of seatLayouts) {
+        const layoutForMatrix = {
+          name: seatLayout.name,
+          seatDisplayRows: [],
+          seatVisibleColumns: [],
+          seatsLayoutForMatrix: Array.from({ length: this.rows }, (_3, i) => Array.from({ length: this.cols }, (_4, j) => ({
+            _id: "",
+            index: i * this.cols + j + 1,
+            typeId: "",
+            name: "",
+            status: "available",
+            statusChanged: false,
+            statusDeselected: false
+          })))
+        };
+        for (const cell of seatLayout.seats) {
+          const row = Math.floor((cell.index - 1) / this.cols);
+          const col = (cell.index - 1) % this.cols;
+          layoutForMatrix.seatsLayoutForMatrix[row][col] = __spreadProps(__spreadValues({}, cell), {
+            statusChanged: false,
+            statusDeselected: false
+          });
+        }
+        yield this.updateDisplayMatrix(layoutForMatrix.seatsLayoutForMatrix, layoutForMatrix.seatDisplayRows, layoutForMatrix.seatVisibleColumns, (matrix, displayRows, visibleColumns) => {
+          layoutForMatrix.seatsLayoutForMatrix = matrix;
+          layoutForMatrix.seatDisplayRows = displayRows;
+          layoutForMatrix.seatVisibleColumns = visibleColumns;
+        });
+        layoutsForMatrix.push(layoutForMatrix);
+      }
+      yield out(layoutsForMatrix);
+    });
+  }
+  updateDisplayMatrix(matrix, displayRows, visibleColumns, out) {
+    return __async(this, null, function* () {
+      const rows = matrix.length;
+      const cols = matrix[0].length;
+      displayRows = Array(rows).fill(false);
+      visibleColumns = Array(cols).fill(false);
+      const selectedColumns = [];
+      const selectedRows = /* @__PURE__ */ new Set();
+      matrix.forEach((row, i) => {
+        row.forEach((cell, j) => {
+          if (cell.typeId) {
+            displayRows[i] = true;
+            selectedColumns.push(j);
+            selectedRows.add(i);
+          }
+        });
+      });
+      const selectedRowsArray = Array.from(selectedRows).sort((a, b) => a - b);
+      selectedRowsArray.forEach((row, index, array) => {
+        for (let i = row; i <= array[array.length - 1]; i++) {
+          displayRows[i] = true;
+        }
+      });
+      if (selectedColumns.length > 0) {
+        selectedColumns.sort((a, b) => a - b);
+        const [firstCol, lastCol] = [selectedColumns[0], selectedColumns[selectedColumns.length - 1]];
+        for (let j = firstCol; j <= lastCol; j++) {
+          visibleColumns[j] = true;
+        }
+      }
+      out(matrix, displayRows, visibleColumns);
+    });
+  }
+  getIconByType(cell) {
+    const selectedType = this.seatTypes.find((t) => t._id === cell.typeId);
+    if (!selectedType)
+      return "";
+    if (cell.status === "selected") {
+      return selectedType.selectedIcon;
+    } else if (cell.status === "block" || cell.status === "booked") {
+      return selectedType.blockIcon;
+    }
+    return selectedType.icon;
+  }
+  backPage() {
+    this.location.back();
+  }
+  editBusTempate() {
+    const allowedKeys = ["_id", "name", "seatLayouts"];
+    const combinedBusTemplate = Object.fromEntries(Object.entries(this.busTemplateReview).filter(([key]) => allowedKeys.includes(key)));
+    const params = { busTemplate: JSON.stringify(combinedBusTemplate) };
+    this.router.navigateByUrl("/management/bus-templates/bus-template-detail", { state: params });
+  }
+  onSubmit() {
+    if (!this.busDetailForm.valid) {
+      this.utils.markFormGroupTouched(this.busDetailForm);
+      return;
+    }
+    const data = this.busDetailForm.getRawValue();
+    const bus2Create = __spreadValues({}, data);
+    if (this.bus) {
+      const bus2Update = __spreadProps(__spreadValues({}, bus2Create), {
+        _id: this.bus._id
+        // Thêm thuộc tính _id
+      });
+      this.updateBus(bus2Update);
+      return;
+    }
+    this.createBus(bus2Create);
+  }
+  updateBus(bus2Update) {
+    this.busesService.updateBus(bus2Update).subscribe({
+      next: (res) => {
+        if (res) {
+          const updatedState = __spreadProps(__spreadValues({}, history.state), { bus: JSON.stringify(res) });
+          window.history.replaceState(updatedState, "", window.location.href);
+          toast.success("Bus update successfully");
+        }
+      },
+      error: (error2) => this.utils.handleRequestError(error2)
+    });
+  }
+  createBus(bus2Create) {
+    this.busesService.createBus(bus2Create).subscribe({
+      next: (res) => {
+        if (res) {
+          toast.success("Bus added successfully");
+        }
+      },
+      error: (error2) => this.utils.handleRequestError(error2)
+    });
+  }
+  static {
+    this.\u0275fac = function BusDetailComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusDetailComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(Utils), \u0275\u0275directiveInject(Location), \u0275\u0275directiveInject(BusServicesService), \u0275\u0275directiveInject(BusTypesService), \u0275\u0275directiveInject(BusTemplatesService), \u0275\u0275directiveInject(SeatTypesService), \u0275\u0275directiveInject(BusesService), \u0275\u0275directiveInject(Router));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusDetailComponent, selectors: [["app-bus-detail"]], standalone: false, decls: 6, vars: 1, consts: [["busTemplateDetailNameClearTpl", ""], ["busTemplateDetailNameErrorTpl", ""], ["busTemplateDetailLicensePlateClearTpl", ""], ["busTemplateDetailLicensePlateErrorTpl", ""], ["busTemplateDetailBusServiceIdsErrorTpl", ""], ["busTemplateDetailBusTypeIdErrorTpl", ""], ["busTemplateDetailBusTemplateIdErrorTpl", ""], [1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], [1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "px-6", "py-2"], ["nz-form", "", 3, "formGroup", "ngSubmit", 4, "ngIf"], ["nz-form", "", 3, "ngSubmit", "formGroup"], [1, "flex", "gap-4"], [1, "flex", "w-6/12"], [1, "!w-full"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], [1, "!flex", "!h-[56px]", "flex-col", 3, "nzErrorTip"], [1, "custom-nz-input-group", "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], ["type", "text", "nz-input", "", "formControlName", "name", "placeholder", "Nh\u1EADp Name"], ["nzFor", "licensePlate", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "text", "nz-input", "", "formControlName", "licensePlate", "placeholder", "Nh\u1EADp License Plate"], ["nzFor", "busServiceIds", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], [3, "nzErrorTip"], ["formControlName", "busServiceIds", "nzMode", "multiple", "nzPlaceHolder", "Ch\u1ECDn Bus Services"], ["nzCustomContent", "", 3, "nzLabel", "nzValue"], ["nzFor", "busTypeId", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start", 3, "nzSpan"], ["formControlName", "busTypeId", "nzPlaceHolder", "Ch\u1ECDn Bus Type"], ["nzFor", "busTemplateId", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start", 3, "nzSpan"], ["formControlName", "busTemplateId", "nzPlaceHolder", "Ch\u1ECDn Bus Tempate", 3, "ngModelChange"], ["class", "flex flex-col gap-4 pt-5", 4, "ngIf"], [1, "my-5", "flex", "w-full", "justify-end"], ["nz-button", "", "nzType", "default", "type", "submit", 1, "!min-w-24", "!bg-primary", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "!text-white", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500"], ["nz-icon", "", "nzTheme", "fill", "nzType", "close-circle", 1, "ant-input-clear-icon", 3, "click"], [1, "mt-1", "!text-xs", "text-red-500"], [1, "flex", "items-center"], [3, "src", "svgClass"], [1, "pl-4", "!font-medium"], [1, "flex", "flex-col", "gap-4", "pt-5"], [1, "flex", "justify-between"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], [4, "ngIf"], [1, "flex", "w-full", "justify-center", "gap-10"], [4, "ngFor", "ngForOf"], [1, "p-2"], [1, "text-center"], [1, "text-base"], [1, "px-2", "py-3"], [1, "matrix"], ["class", "row", 3, "display", 4, "ngFor", "ngForOf"], [1, "row"], ["class", "cell", 3, "status-changed", "status-deselected", "display", "visibility", 4, "ngFor", "ngForOf"], [1, "cell"], [3, "svgClass", "src"], [1, "cell-name", "!text-xs"]], template: function BusDetailComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "div", 7)(1, "div", 8)(2, "button", 9);
+        \u0275\u0275listener("click", function BusDetailComponent_Template_button_click_2_listener() {
+          return ctx.backPage();
+        });
+        \u0275\u0275text(3, " Back ");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(4, "div", 10);
+        \u0275\u0275template(5, BusDetailComponent_form_5_Template, 60, 11, "form", 11);
+        \u0275\u0275elementEnd();
+      }
+      if (rf & 2) {
+        \u0275\u0275advance(5);
+        \u0275\u0275property("ngIf", ctx.busDetailForm);
+      }
+    }, dependencies: [NgForOf, NgIf, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, SvgIconComponent, NzOptionComponent, NzSelectComponent, NzButtonComponent, NzTransitionPatchDirective, NzWaveDirective, NzInputDirective, NzInputGroupComponent, NzInputGroupWhitSuffixOrPrefixDirective, NzColDirective, NzRowDirective, NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent, NzIconDirective], styles: ['@charset "UTF-8";\n\n\n\n.matrix[_ngcontent-%COMP%] {\n  display: grid;\n  gap: 15px;\n  justify-items: start;\n}\n.matrix[_ngcontent-%COMP%]   .cell[_ngcontent-%COMP%] {\n  width: auto;\n  height: auto;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  text-align: center;\n}\n.matrix[_ngcontent-%COMP%]   .cell[_ngcontent-%COMP%]   .cell-name[_ngcontent-%COMP%] {\n  position: absolute;\n  font-size: 10px;\n}\n.matrix[_ngcontent-%COMP%]   .cell[_ngcontent-%COMP%]   .hidden[_ngcontent-%COMP%] {\n  visibility: hidden;\n}\n.matrix[_ngcontent-%COMP%]   .cell[_ngcontent-%COMP%]   .icon[_ngcontent-%COMP%] {\n  width: 28px;\n  height: 28px;\n}\n.matrix[_ngcontent-%COMP%]   .cell.status-changed[_ngcontent-%COMP%] {\n  animation: statusChange 0.3s forwards;\n}\n.matrix[_ngcontent-%COMP%]   .cell.status-deselected[_ngcontent-%COMP%] {\n  animation: statusDeselect 0.3s forwards;\n}\n/*# sourceMappingURL=bus-detail.component.css.map */'] });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BusDetailComponent, { className: "BusDetailComponent", filePath: "src/app/modules/management/pages/buses/pages/bus-detail/bus-detail.component.ts", lineNumber: 28 });
+})();
+
+// src/app/modules/management/pages/bus-routes/model/bus-route.model.ts
+var SearchBusRoute = class {
+  constructor() {
+    this.busRoutes = [];
+    this.pageIdx = 0;
+    this.totalItem = 0;
+    this.totalPage = 0;
+  }
+};
+
+// src/app/modules/management/pages/bus-routes/service/bus-routes.servive.ts
+var BusRoutesService = class _BusRoutesService {
+  constructor(apiGatewayService) {
+    this.apiGatewayService = apiGatewayService;
+    this.url = "/bus-routes";
+  }
+  findAll() {
+    const url = `${this.url}/findAll`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  searchBusRoute(pageIdx = 0, pageSize = 999, keyword = "", sortBy = "") {
+    const url = `${this.url}/search?pageIdx=${pageIdx}&pageSize=${pageSize}&keyword=${keyword}&sortBy=${sortBy}`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  createBusRoute(busRoute2Create) {
+    const url = this.url;
+    return this.apiGatewayService.post(url, busRoute2Create).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  updateBusRoute(busRoute2Update) {
+    const url = this.url;
+    return this.apiGatewayService.put(url, busRoute2Update).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  deleteBusRoute(id) {
+    const deleteOptionUrl = this.url + `/${id}`;
+    return this.apiGatewayService.delete(deleteOptionUrl).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  static {
+    this.\u0275fac = function BusRoutesService_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusRoutesService)(\u0275\u0275inject(ApiGatewayService));
+    };
+  }
+  static {
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _BusRoutesService, factory: _BusRoutesService.\u0275fac, providedIn: "root" });
+  }
+};
+
+// src/app/modules/management/pages/bus-routes/bus-routes.component.ts
+var _forTrack012 = ($index, $item) => $item._id;
+function BusRoutesComponent_For_24_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "tr", 13)(1, "td", 15)(2, "input", 16);
+    \u0275\u0275twoWayListener("ngModelChange", function BusRoutesComponent_For_24_Template_input_ngModelChange_2_listener($event) {
+      const busRoute_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      \u0275\u0275twoWayBindingSet(busRoute_r2.selected, $event) || (busRoute_r2.selected = $event);
+      return \u0275\u0275resetView($event);
+    });
+    \u0275\u0275listener("change", function BusRoutesComponent_For_24_Template_input_change_2_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.checkSelectAll());
+    });
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(3, "td");
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "td");
+    \u0275\u0275text(6);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "td");
+    \u0275\u0275text(8);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "td", 15)(10, "button", 17);
+    \u0275\u0275listener("click", function BusRoutesComponent_For_24_Template_button_click_10_listener() {
+      const busRoute_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.editBus(busRoute_r2));
+    });
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(11, "svg", 18);
+    \u0275\u0275element(12, "path", 19);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(13, "button", 20);
+    \u0275\u0275listener("click", function BusRoutesComponent_For_24_Template_button_click_13_listener() {
+      const busRoute_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.deleteBus(busRoute_r2._id));
+    });
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(14, "svg", 18);
+    \u0275\u0275element(15, "path", 21);
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    const busRoute_r2 = ctx.$implicit;
+    \u0275\u0275advance(2);
+    \u0275\u0275twoWayProperty("ngModel", busRoute_r2.selected);
+    \u0275\u0275attribute("aria-label", "Select " + busRoute_r2.name);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(busRoute_r2.name);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1("", busRoute_r2.distance, " Km");
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(busRoute_r2.distanceTime);
+  }
+}
+function BusRoutesComponent_ForEmpty_25_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "tr")(1, "td", 22);
+    \u0275\u0275text(2, "No busRoutes found");
+    \u0275\u0275elementEnd()();
+  }
+}
+var BusRoutesComponent = class _BusRoutesComponent {
+  constructor(busRoutesService, dialog, utils, router) {
+    this.busRoutesService = busRoutesService;
+    this.dialog = dialog;
+    this.utils = utils;
+    this.router = router;
+    this.searchBusRoute = new SearchBusRoute();
+    this.selectAll = false;
+    this.pageIdx = 1;
+    this.pageSize = 5;
+    this.totalPage = 0;
+    this.totalItem = 0;
+    this.keyword = "";
+    this.sortBy = "";
+    this.isLoadingBus = false;
+  }
+  ngOnInit() {
+    this.loadData();
+  }
+  loadData() {
+    this.isLoadingBus = true;
+    this.busRoutesService.searchBusRoute(this.pageIdx, this.pageSize, this.keyword, this.sortBy).subscribe({
+      next: (res) => {
+        if (res) {
+          this.searchBusRoute = res;
+          console.log("\u{1F680} ~ BusesComponent ~ this.busRoutesService.searchBus ~ this.searchBusRoute:", this.searchBusRoute);
+          this.totalItem = this.searchBusRoute.totalItem;
+          this.totalPage = this.searchBusRoute.totalPage;
+        }
+        this.isLoadingBus = false;
+      },
+      error: (error2) => {
+        this.utils.handleRequestError(error2);
+        this.isLoadingBus = false;
+      }
+    });
+  }
+  toggleBus(event2) {
+    const checked = event2.target.checked;
+    this.searchBusRoute.busRoutes = this.searchBusRoute.busRoutes.map((busRoute) => __spreadProps(__spreadValues({}, busRoute), {
+      selected: checked
+    }));
+  }
+  checkSelectAll() {
+    this.selectAll = !this.searchBusRoute.busRoutes.some((busRoute) => !busRoute.selected);
+  }
+  deleteBus(id) {
+    const dialogRef = this.dialog.open(MaterialDialogComponent, {
+      data: {
+        icon: {
+          type: "dangerous"
+        },
+        title: "Delete Bus",
+        content: "Are you sure you want to delete this bus? All of your data will be permanently removed. This action cannot be undone.",
+        btn: [
+          {
+            label: "NO",
+            type: "cancel"
+          },
+          {
+            label: "YES",
+            type: "submit"
+          }
+        ]
+      }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.busRoutesService.deleteBusRoute(id).subscribe({
+          next: (res) => {
+            if (res) {
+              this.searchBusRoute.busRoutes = this.searchBusRoute.busRoutes.filter((bus) => bus._id !== id);
+              toast.success("Bus deleted successfully");
+            }
+          },
+          error: (error2) => this.utils.handleRequestError(error2)
+        });
+      }
+    });
+  }
+  editBus(busRoute) {
+    const params = { busRoute: JSON.stringify(busRoute) };
+    this.router.navigateByUrl("/management/bus-routes/bus-route-detail", { state: params });
+  }
+  addBus() {
+    this.router.navigate(["/management/bus-routes/bus-route-detail"]);
+  }
+  reloadBusPage(data) {
+    this.pageIdx = data.pageIdx;
+    this.pageSize = data.pageSize;
+    this.loadData();
+  }
+  searchBusPage(keyword) {
+    this.pageIdx = 1;
+    this.keyword = keyword;
+    this.loadData();
+  }
+  sortBusPage(sortBy) {
+    this.sortBy = sortBy;
+    this.loadData();
+  }
+  handleRequestError(error2) {
+    const msg = "An error occurred while processing your request";
+    toast.error(msg, {
+      position: "bottom-right",
+      description: error2.message || "Please try again later",
+      action: {
+        label: "Dismiss",
+        onClick: () => {
+        }
+      },
+      actionButtonStyle: "background-color:#DC2626; color:white;"
+    });
+  }
+  static {
+    this.\u0275fac = function BusRoutesComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusRoutesComponent)(\u0275\u0275directiveInject(BusRoutesService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(Utils), \u0275\u0275directiveInject(Router));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusRoutesComponent, selectors: [["app-bus-routes"]], standalone: false, decls: 27, vars: 9, consts: [[1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], ["aria-label", "Import CSV", 1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold"], ["aria-label", "Add Bus", 1, "bg-primary", "text-primary-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "p-2"], [3, "sortDataEvent", "searchDataEvent", "title", "totalItem"], [1, "overflow-x-auto"], [1, "text-muted-foreground", "w-full", "table-auto", "border-collapse", "text-left", "align-middle", "leading-5"], [1, "border-muted/20", "text-muted-foreground", "border", "text-xs"], [1, "w-[50px]"], ["type", "checkbox", "aria-label", "Select all busRoutes", 1, "checkbox", "checkbox-sm", 3, "change", "ngModelChange", "ngModel"], [1, "min-w-[200px]"], [1, "w-[100px]", "text-center"], [1, "hover:bg-card/50"], [3, "reloadDataAndPageEvent", "pageIdx", "pageSize", "totalItem", "isLoading", "totalPage"], [1, "text-center"], ["type", "checkbox", 1, "checkbox", "checkbox-sm", 3, "ngModelChange", "change", "ngModel"], ["aria-label", "Edit busRoute", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["viewBox", "0 0 20 20", "fill", "currentColor", 1, "size-5"], ["d", "m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z"], ["aria-label", "Delete busRoute", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["fill-rule", "evenodd", "d", "M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z", "clip-rule", "evenodd"], ["colspan", "4", 1, "py-4", "text-center", "text-sm"]], template: function BusRoutesComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "button", 2);
+        \u0275\u0275text(3, " Import CSV ");
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(4, "button", 3);
+        \u0275\u0275listener("click", function BusRoutesComponent_Template_button_click_4_listener() {
+          return ctx.addBus();
+        });
+        \u0275\u0275text(5, " Add Bus Route ");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(6, "div", 4)(7, "app-table-action", 5);
+        \u0275\u0275listener("sortDataEvent", function BusRoutesComponent_Template_app_table_action_sortDataEvent_7_listener($event) {
+          return ctx.sortBusPage($event);
+        })("searchDataEvent", function BusRoutesComponent_Template_app_table_action_searchDataEvent_7_listener($event) {
+          return ctx.searchBusPage($event);
+        });
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(8, "div", 6)(9, "table", 7)(10, "thead", 8)(11, "tr")(12, "th", 9)(13, "input", 10);
+        \u0275\u0275listener("change", function BusRoutesComponent_Template_input_change_13_listener($event) {
+          return ctx.toggleBus($event);
+        });
+        \u0275\u0275twoWayListener("ngModelChange", function BusRoutesComponent_Template_input_ngModelChange_13_listener($event) {
+          \u0275\u0275twoWayBindingSet(ctx.selectAll, $event) || (ctx.selectAll = $event);
+          return $event;
+        });
+        \u0275\u0275elementEnd()();
+        \u0275\u0275elementStart(14, "th", 11);
+        \u0275\u0275text(15, "Name");
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(16, "th", 11);
+        \u0275\u0275text(17, "Distance");
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(18, "th", 11);
+        \u0275\u0275text(19, "DistanceTime");
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(20, "th", 12);
+        \u0275\u0275text(21, "Actions");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(22, "tbody");
+        \u0275\u0275repeaterCreate(23, BusRoutesComponent_For_24_Template, 16, 5, "tr", 13, _forTrack012, false, BusRoutesComponent_ForEmpty_25_Template, 3, 0, "tr");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(26, "app-table-footer", 14);
+        \u0275\u0275listener("reloadDataAndPageEvent", function BusRoutesComponent_Template_app_table_footer_reloadDataAndPageEvent_26_listener($event) {
+          return ctx.reloadBusPage($event);
+        });
+        \u0275\u0275elementEnd()();
+      }
+      if (rf & 2) {
+        \u0275\u0275advance(7);
+        \u0275\u0275property("title", "Bus Route")("totalItem", ctx.totalItem);
+        \u0275\u0275advance(6);
+        \u0275\u0275twoWayProperty("ngModel", ctx.selectAll);
+        \u0275\u0275advance(10);
+        \u0275\u0275repeater(ctx.searchBusRoute.busRoutes);
+        \u0275\u0275advance(3);
+        \u0275\u0275property("pageIdx", ctx.pageIdx)("pageSize", ctx.pageSize)("totalItem", ctx.totalItem)("isLoading", ctx.isLoadingBus)("totalPage", ctx.totalPage);
+      }
+    }, dependencies: [CheckboxControlValueAccessor, NgControlStatus, NgModel, TableFooterComponent, TableActionComponent], styles: ["\n\ntd[_ngcontent-%COMP%] {\n  padding: 0.75rem 1rem;\n  font-size: 0.85rem;\n}\nth[_ngcontent-%COMP%] {\n  font-weight: 500;\n  padding: 0.625rem 1rem;\n  font-weight: 500;\n  font-size: 0.8125rem;\n  line-height: 1.125rem;\n  vertical-align: middle;\n  @apply border-b border-r;\n}\n/*# sourceMappingURL=bus-routes.component.css.map */"] });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BusRoutesComponent, { className: "BusRoutesComponent", filePath: "src/app/modules/management/pages/bus-routes/bus-routes.component.ts", lineNumber: 16 });
+})();
+
+// src/app/modules/management/pages/bus-routes/pages/bus-route-detail/bus-route-detail.component.ts
+function BusRouteDetailComponent_form_5_ng_template_9_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusRouteDetailComponent_form_5_ng_template_9_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busRouteDetailForm.controls["name"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_11_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_11_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusRouteDetailComponent_form_5_ng_template_11_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busRouteDetailForm.controls["name"].errors == null ? null : ctx_r1.busRouteDetailForm.controls["name"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_20_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r4 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusRouteDetailComponent_form_5_ng_template_20_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r4);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busRouteDetailForm.controls["distance"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_22_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_22_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusRouteDetailComponent_form_5_ng_template_22_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busRouteDetailForm.controls["distance"].errors == null ? null : ctx_r1.busRouteDetailForm.controls["distance"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_32_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r5 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusRouteDetailComponent_form_5_ng_template_32_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r5);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busRouteDetailForm.controls["distanceTime"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_34_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_34_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusRouteDetailComponent_form_5_ng_template_34_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busRouteDetailForm.controls["distanceTime"].errors == null ? null : ctx_r1.busRouteDetailForm.controls["distanceTime"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_43_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r6 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusRouteDetailComponent_form_5_ng_template_43_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r6);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busRouteDetailForm.controls["price"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_45_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusRouteDetailComponent_form_5_ng_template_45_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusRouteDetailComponent_form_5_ng_template_45_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busRouteDetailForm.controls["price"].errors == null ? null : ctx_r1.busRouteDetailForm.controls["price"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusRouteDetailComponent_form_5_nz_form_item_53_For_5_For_2_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option", 44)(1, "div", 45)(2, "span", 46);
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busStation_r7 = ctx.$implicit;
+    \u0275\u0275property("nzLabel", busStation_r7.name)("nzValue", busStation_r7._id);
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", busStation_r7.name, " ");
+  }
+}
+function BusRouteDetailComponent_form_5_nz_form_item_53_For_5_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option-group", 42);
+    \u0275\u0275repeaterCreate(1, BusRouteDetailComponent_form_5_nz_form_item_53_For_5_For_2_Template, 4, 3, "nz-option", 44, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const busProvince_r8 = ctx.$implicit;
+    \u0275\u0275propertyInterpolate("nzLabel", busProvince_r8.name);
+    \u0275\u0275advance();
+    \u0275\u0275repeater(busProvince_r8.busStations);
+  }
+}
+function BusRouteDetailComponent_form_5_nz_form_item_53_svg_icon_6_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "svg-icon", 47);
+    \u0275\u0275listener("click", function BusRouteDetailComponent_form_5_nz_form_item_53_svg_icon_6_Template_svg_icon_click_0_listener() {
+      \u0275\u0275restoreView(_r9);
+      const i_r10 = \u0275\u0275nextContext().index;
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.removeBreakPoint(i_r10));
+    });
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    \u0275\u0275property("svgClass", "h-5 w-5 ml-2 cursor-pointer");
+  }
+}
+function BusRouteDetailComponent_form_5_nz_form_item_53_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-form-item", 39)(1, "nz-form-control")(2, "nz-input-group", 40)(3, "nz-select", 41);
+    \u0275\u0275repeaterCreate(4, BusRouteDetailComponent_form_5_nz_form_item_53_For_5_Template, 3, 1, "nz-option-group", 42, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(6, BusRouteDetailComponent_form_5_nz_form_item_53_svg_icon_6_Template, 1, 1, "svg-icon", 43);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const i_r10 = ctx.index;
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275property("formGroupName", i_r10);
+    \u0275\u0275advance(4);
+    \u0275\u0275repeater(ctx_r1.filteredProvinces);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngIf", ctx_r1.breakPoints.controls.length > 2);
+  }
+}
+function BusRouteDetailComponent_form_5_div_58_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 48)(1, "span", 49);
+    \u0275\u0275text(2, "Vui l\xF2ng ch\u1ECDn \xEDt nh\u1EA5t 2 bus station.");
+    \u0275\u0275elementEnd()();
+  }
+}
+function BusRouteDetailComponent_form_5_div_59_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 48)(1, "span", 49);
+    \u0275\u0275text(2, "Kh\xF4ng \u0111\u01B0\u1EE3c ch\u1ECDn 2 bus station gi\u1ED1ng nhau.");
+    \u0275\u0275elementEnd()();
+  }
+}
+function BusRouteDetailComponent_form_5_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "form", 13);
+    \u0275\u0275listener("ngSubmit", function BusRouteDetailComponent_form_5_Template_form_ngSubmit_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.onSubmit());
+    });
+    \u0275\u0275elementStart(1, "div", 14)(2, "div", 15)(3, "nz-form-item", 16)(4, "nz-form-label", 17);
+    \u0275\u0275text(5, "Name");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "nz-form-control", 18)(7, "nz-input-group", 19);
+    \u0275\u0275element(8, "input", 20);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(9, BusRouteDetailComponent_form_5_ng_template_9_Template, 1, 0, "ng-template", null, 0, \u0275\u0275templateRefExtractor)(11, BusRouteDetailComponent_form_5_ng_template_11_Template, 2, 1, "ng-template", null, 1, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(13, "div", 15)(14, "nz-form-item", 16)(15, "nz-form-label", 21);
+    \u0275\u0275text(16, "Distance");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(17, "nz-form-control", 18)(18, "nz-input-group", 19);
+    \u0275\u0275element(19, "input", 22);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(20, BusRouteDetailComponent_form_5_ng_template_20_Template, 1, 0, "ng-template", null, 2, \u0275\u0275templateRefExtractor)(22, BusRouteDetailComponent_form_5_ng_template_22_Template, 2, 1, "ng-template", null, 3, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(24, "div", 14)(25, "div", 15)(26, "nz-form-item", 16)(27, "nz-form-label", 23);
+    \u0275\u0275text(28, "DistanceTime");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(29, "nz-form-control", 18)(30, "nz-input-group", 19);
+    \u0275\u0275element(31, "input", 24);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(32, BusRouteDetailComponent_form_5_ng_template_32_Template, 1, 0, "ng-template", null, 4, \u0275\u0275templateRefExtractor)(34, BusRouteDetailComponent_form_5_ng_template_34_Template, 2, 1, "ng-template", null, 5, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(36, "div", 15)(37, "nz-form-item", 16)(38, "nz-form-label", 25);
+    \u0275\u0275text(39, "Price");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(40, "nz-form-control", 18)(41, "nz-input-group", 19);
+    \u0275\u0275element(42, "input", 26);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(43, BusRouteDetailComponent_form_5_ng_template_43_Template, 1, 0, "ng-template", null, 6, \u0275\u0275templateRefExtractor)(45, BusRouteDetailComponent_form_5_ng_template_45_Template, 2, 1, "ng-template", null, 7, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(47, "div", 14)(48, "div", 27)(49, "div")(50, "label", 28);
+    \u0275\u0275text(51, "Bus Station");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(52, "div", 29);
+    \u0275\u0275listener("cdkDropListDropped", function BusRouteDetailComponent_form_5_Template_div_cdkDropListDropped_52_listener($event) {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.drop($event));
+    });
+    \u0275\u0275template(53, BusRouteDetailComponent_form_5_nz_form_item_53_Template, 7, 2, "nz-form-item", 30);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(54, "div", 31)(55, "button", 32);
+    \u0275\u0275listener("click", function BusRouteDetailComponent_form_5_Template_button_click_55_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.addBreakPoint());
+    });
+    \u0275\u0275element(56, "svg-icon", 33);
+    \u0275\u0275text(57, " Add Break Point ");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275template(58, BusRouteDetailComponent_form_5_div_58_Template, 3, 0, "div", 34)(59, BusRouteDetailComponent_form_5_div_59_Template, 3, 0, "div", 34);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(60, "div", 35)(61, "button", 36);
+    \u0275\u0275text(62, " SAVE ");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busRouteDetailDistanceClearTpl_r11 = \u0275\u0275reference(21);
+    const busRouteDetailDistanceErrorTpl_r12 = \u0275\u0275reference(23);
+    const busRouteDetailDistanceTimeClearTpl_r13 = \u0275\u0275reference(33);
+    const busRouteDetailDistanceTimeErrorTpl_r14 = \u0275\u0275reference(35);
+    const busRouteDetailPriceTimeClearTpl_r15 = \u0275\u0275reference(44);
+    const busRouteDetailPriceTimeErrorTpl_r16 = \u0275\u0275reference(46);
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("formGroup", ctx_r1.busRouteDetailForm);
+    \u0275\u0275advance(6);
+    \u0275\u0275property("nzErrorTip", busRouteDetailDistanceTimeErrorTpl_r14);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busRouteDetailDistanceTimeClearTpl_r13);
+    \u0275\u0275advance(10);
+    \u0275\u0275property("nzErrorTip", busRouteDetailDistanceErrorTpl_r12);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busRouteDetailDistanceClearTpl_r11);
+    \u0275\u0275advance(11);
+    \u0275\u0275property("nzErrorTip", busRouteDetailDistanceTimeErrorTpl_r14);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busRouteDetailDistanceTimeClearTpl_r13);
+    \u0275\u0275advance(10);
+    \u0275\u0275property("nzErrorTip", busRouteDetailPriceTimeErrorTpl_r16);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busRouteDetailPriceTimeClearTpl_r15);
+    \u0275\u0275advance(12);
+    \u0275\u0275property("ngForOf", ctx_r1.breakPoints.controls);
+    \u0275\u0275advance(3);
+    \u0275\u0275property("svgClass", "h-5 w-5 mr-2");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngIf", ctx_r1.busRouteDetailForm.controls["breakPoints"].touched && ctx_r1.checkBreakPointsErrors());
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r1.busRouteDetailForm.controls["breakPoints"].touched && ctx_r1.checkBreakPointsDuplicateErrors());
+  }
+}
+var BusRouteDetailComponent = class _BusRouteDetailComponent {
+  constructor(fb, utils, location, busRoutesService, busStationsService, busProvincesService, router) {
+    this.fb = fb;
+    this.utils = utils;
+    this.location = location;
+    this.busRoutesService = busRoutesService;
+    this.busStationsService = busStationsService;
+    this.busProvincesService = busProvincesService;
+    this.router = router;
+    this.busStations = [];
+    this.busProvinces = [];
+    this.filteredProvinces = [];
+  }
+  ngOnInit() {
+    this.getQueryParams();
+    this.initData();
+  }
+  getQueryParams() {
+    return __async(this, null, function* () {
+      const params = history.state;
+      if (params) {
+        this.busRoute = params["busRoute"] ? JSON.parse(params["busRoute"]) : null;
+        console.log("\u{1F680} ~ BusRouteDetailComponent ~ getQueryParams ~ this.busRoute:", this.busRoute);
+      }
+    });
+  }
+  initData() {
+    let findAllBusStations = this.busStationsService.findAll();
+    let findAllBusProvinces = this.busProvincesService.findAll();
+    let request = [findAllBusStations, findAllBusProvinces];
+    combineLatest(request).subscribe((_0) => __async(this, [_0], function* ([busStations, busProvinces]) {
+      this.busStations = busStations;
+      this.busProvinces = busProvinces;
+      this.filterProvinces();
+      this.initForm();
+    }));
+  }
+  initForm() {
+    return __async(this, null, function* () {
+      const { name: name2 = "", distance = 0, distanceTime = "", price = 0, breakPoints = [] } = this.busRoute || {};
+      this.busRouteDetailForm = this.fb.group({
+        name: [name2, [Validators.required]],
+        distance: [distance, [Validators.required]],
+        distanceTime: [distanceTime, [Validators.required]],
+        price: [price, [Validators.required]],
+        breakPoints: this.fb.array(
+          breakPoints.length > 0 ? breakPoints.map((bp) => this.createBreakPoint(bp.busStationId)) : [this.createBreakPoint(), this.createBreakPoint()]
+          // Add 2 default breakpoints if none exist
+        )
+      });
+    });
+  }
+  createBreakPoint(busStationId = "") {
+    return this.fb.group({
+      busStationId: [busStationId, Validators.required]
+    });
+  }
+  addBreakPoint(busStationId = "") {
+    const breakPoints = this.busRouteDetailForm.get("breakPoints");
+    breakPoints.push(this.createBreakPoint(busStationId));
+  }
+  filterProvinces() {
+    this.filteredProvinces = this.busProvinces.filter((province) => this.busStations.some((busStation) => busStation.provinceId === province._id)).map((province) => {
+      const matchingBusStations = this.busStations.filter((busStation) => busStation.provinceId === province._id);
+      return __spreadProps(__spreadValues({}, province), {
+        busStations: matchingBusStations
+        // Không lặp lại
+      });
+    });
+  }
+  removeBreakPoint(index) {
+    const breakPoints = this.busRouteDetailForm.get("breakPoints");
+    if (index >= 0 && index < breakPoints.length) {
+      breakPoints.removeAt(index);
+    } else {
+      console.warn(`Invalid index ${index}. Cannot remove breakpoint.`);
+    }
+  }
+  get breakPoints() {
+    return this.busRouteDetailForm.get("breakPoints");
+  }
+  checkBreakPointsErrors() {
+    const breakPoints = this.busRouteDetailForm?.get("breakPoints");
+    return breakPoints?.controls?.some((control) => control?.get("busStationId")?.errors?.["required"] === true);
+  }
+  checkBreakPointsDuplicateErrors() {
+    const breakPoints = this.busRouteDetailForm?.get("breakPoints");
+    const busStationIds = breakPoints?.controls.map((control) => control.get("busStationId")?.value).filter((id) => id && id.trim() !== "");
+    return busStationIds.some((id, index) => busStationIds.indexOf(id) !== index);
+  }
+  backPage() {
+    this.location.back();
+  }
+  drop(event2) {
+    moveItemInArray(this.breakPoints.controls, event2.previousIndex, event2.currentIndex);
+  }
+  onSubmit() {
+    if (!this.busRouteDetailForm.valid) {
+      this.utils.markFormGroupTouched(this.busRouteDetailForm);
+      return;
+    }
+    const data = this.busRouteDetailForm.getRawValue();
+    const busRoute2Create = __spreadValues({}, data);
+    console.log("\u{1F680} ~ BusRouteDetailComponent ~ onSubmit ~ busRoute2Create:", busRoute2Create);
+    if (this.busRoute) {
+      const busRoute2Update = __spreadProps(__spreadValues({}, busRoute2Create), {
+        _id: this.busRoute._id
+        // Thêm thuộc tính _id
+      });
+      this.updateBus(busRoute2Update);
+      return;
+    }
+    this.createBus(busRoute2Create);
+  }
+  updateBus(busRoute2Update) {
+    this.busRoutesService.updateBusRoute(busRoute2Update).subscribe({
+      next: (res) => {
+        if (res) {
+          const updatedState = __spreadProps(__spreadValues({}, history.state), { busRoute: JSON.stringify(res) });
+          window.history.replaceState(updatedState, "", window.location.href);
+          toast.success("Bus Route update successfully");
+        }
+      },
+      error: (error2) => this.utils.handleRequestError(error2)
+    });
+  }
+  createBus(busRoute2Create) {
+    this.busRoutesService.createBusRoute(busRoute2Create).subscribe({
+      next: (res) => {
+        if (res) {
+          toast.success("Bus Route added successfully");
+        }
+      },
+      error: (error2) => this.utils.handleRequestError(error2)
+    });
+  }
+  static {
+    this.\u0275fac = function BusRouteDetailComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusRouteDetailComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(Utils), \u0275\u0275directiveInject(Location), \u0275\u0275directiveInject(BusRoutesService), \u0275\u0275directiveInject(BusStationsService), \u0275\u0275directiveInject(BusProvincesService), \u0275\u0275directiveInject(Router));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusRouteDetailComponent, selectors: [["app-bus-route-detail"]], standalone: false, decls: 6, vars: 1, consts: [["busRouteDetailNameClearTpl", ""], ["busRouteDetailNameErrorTpl", ""], ["busRouteDetailDistanceClearTpl", ""], ["busRouteDetailDistanceErrorTpl", ""], ["busRouteDetailDistanceTimeClearTpl", ""], ["busRouteDetailDistanceTimeErrorTpl", ""], ["busRouteDetailPriceTimeClearTpl", ""], ["busRouteDetailPriceTimeErrorTpl", ""], [1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], [1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "px-6", "py-2"], ["nz-form", "", 3, "formGroup", "ngSubmit", 4, "ngIf"], ["nz-form", "", 3, "ngSubmit", "formGroup"], [1, "flex", "gap-4"], [1, "flex", "w-6/12"], [1, "!w-full"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], [1, "!flex", "!h-[56px]", "flex-col", 3, "nzErrorTip"], [1, "custom-nz-input-group", "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], ["type", "text", "nz-input", "", "formControlName", "name", "placeholder", "Nh\u1EADp Name"], ["nzFor", "distance", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "number", "nz-input", "", "formControlName", "distance", "placeholder", "Nh\u1EADp Distance"], ["nzFor", "distanceTime", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "text", "nz-input", "", "formControlName", "distanceTime", "placeholder", "Nh\u1EADp Distance"], ["nzFor", "price", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "text", "nz-input", "", "formControlName", "price", "placeholder", "Nh\u1EADp Price"], [1, "flex", "w-6/12", "flex-col"], [1, "ant-form-item-label", "ant-col", "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["formArrayName", "breakPoints", "cdkDropList", "", 1, "drag-drop-list", "flex", "flex-col", "gap-4", 3, "cdkDropListDropped"], ["cdkDrag", "", 3, "formGroupName", 4, "ngFor", "ngForOf"], [1, "mt-4", "flex", "justify-end", "gap-4"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], ["src", "assets/icons/add-square.svg", 3, "svgClass"], ["class", "animate-fade-down", 4, "ngIf"], [1, "my-5", "flex", "w-full", "justify-end"], ["nz-button", "", "nzType", "default", "type", "submit", 1, "!min-w-24", "!bg-primary", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "!text-white", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500"], ["nz-icon", "", "nzTheme", "fill", "nzType", "close-circle", 1, "ant-input-clear-icon", 3, "click"], [1, "mt-1", "!text-xs", "text-red-500"], ["cdkDrag", "", 3, "formGroupName"], [1, "!flex", "!items-center"], ["nzShowSearch", "", "nzAllowClear", "", "formControlName", "busStationId", "nzPlaceHolder", "Ch\u1ECDn Bus Station"], [3, "nzLabel"], ["src", "assets/icons/trash-red-outline.svg", 3, "svgClass", "click", 4, "ngIf"], ["nzCustomContent", "", 3, "nzLabel", "nzValue"], [1, "flex", "items-center"], [1, "pl-4", "!font-medium"], ["src", "assets/icons/trash-red-outline.svg", 3, "click", "svgClass"], [1, "animate-fade-down"], [1, "pt-1", "text-xs", "text-red-500"]], template: function BusRouteDetailComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "div", 8)(1, "div", 9)(2, "button", 10);
+        \u0275\u0275listener("click", function BusRouteDetailComponent_Template_button_click_2_listener() {
+          return ctx.backPage();
+        });
+        \u0275\u0275text(3, " Back ");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(4, "div", 11);
+        \u0275\u0275template(5, BusRouteDetailComponent_form_5_Template, 63, 13, "form", 12);
+        \u0275\u0275elementEnd();
+      }
+      if (rf & 2) {
+        \u0275\u0275advance(5);
+        \u0275\u0275property("ngIf", ctx.busRouteDetailForm);
+      }
+    }, dependencies: [NgForOf, NgIf, \u0275NgNoValidate, DefaultValueAccessor, NumberValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, FormGroupName, FormArrayName, SvgIconComponent, CdkDropList, CdkDrag, NzOptionComponent, NzSelectComponent, NzOptionGroupComponent, NzButtonComponent, NzTransitionPatchDirective, NzWaveDirective, NzInputDirective, NzInputGroupComponent, NzInputGroupWhitSuffixOrPrefixDirective, NzColDirective, NzRowDirective, NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent, NzIconDirective], styles: ["\n\n.drag-drop-list[_ngcontent-%COMP%] {\n  width: 500px;\n  max-width: 100%;\n  overflow: hidden;\n}\n.drag-drop-box[_ngcontent-%COMP%] {\n  align-items: center;\n  justify-content: space-between;\n  cursor: move;\n}\n.cdk-drag-preview[_ngcontent-%COMP%] {\n  box-sizing: border-box;\n  border-radius: 4px;\n  box-shadow:\n    0 5px 5px -3px rgba(0, 0, 0, 0.2),\n    0 8px 10px 1px rgba(0, 0, 0, 0.14),\n    0 3px 14px 2px rgba(0, 0, 0, 0.12);\n}\n.cdk-drag-animating[_ngcontent-%COMP%] {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n.cdk-drag-placeholder[_ngcontent-%COMP%] {\n  opacity: 0;\n}\n.drag-drop-list.cdk-drop-list-dragging[_ngcontent-%COMP%]   .drag-drop-box[_ngcontent-%COMP%]:not(.cdk-drag-placeholder) {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n.ant-form-item-control-input-content[_ngcontent-%COMP%] {\n  display: flex !important;\n}\n/*# sourceMappingURL=bus-route-detail.component.css.map */"] });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BusRouteDetailComponent, { className: "BusRouteDetailComponent", filePath: "src/app/modules/management/pages/bus-routes/pages/bus-route-detail/bus-route-detail.component.ts", lineNumber: 27 });
+})();
+
+// src/app/modules/management/pages/bus-schedules/model/bus-schedule.model.ts
+var SearchBusSchedule = class {
+  constructor() {
+    this.busSchedules = [];
+    this.pageIdx = 0;
+    this.totalItem = 0;
+    this.totalPage = 0;
+  }
+};
+
+// src/app/modules/management/pages/bus-schedules/service/bus-schedules.servive.ts
+var BusSchedulesService = class _BusSchedulesService {
+  constructor(apiGatewayService) {
+    this.apiGatewayService = apiGatewayService;
+    this.url = "/bus-schedules";
+  }
+  findAll() {
+    const url = `${this.url}/findAll`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  searchBusSchedule(pageIdx = 0, pageSize = 999, keyword = "", sortBy = "") {
+    const url = `${this.url}/search-paging?pageIdx=${pageIdx}&pageSize=${pageSize}&keyword=${keyword}&sortBy=${sortBy}`;
+    return this.apiGatewayService.get(url).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  createBusSchedule(busSchedule2Create) {
+    const url = this.url;
+    return this.apiGatewayService.post(url, busSchedule2Create).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  updateBusSchedule(busSchedule2Update) {
+    const url = this.url;
+    return this.apiGatewayService.put(url, busSchedule2Update).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  deleteBusSchedule(id) {
+    const deleteOptionUrl = this.url + `/${id}`;
+    return this.apiGatewayService.delete(deleteOptionUrl).pipe(tap((res) => {
+    }), catchError((error2) => {
+      return of([]);
+    }));
+  }
+  static {
+    this.\u0275fac = function BusSchedulesService_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusSchedulesService)(\u0275\u0275inject(ApiGatewayService));
+    };
+  }
+  static {
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({ token: _BusSchedulesService, factory: _BusSchedulesService.\u0275fac, providedIn: "root" });
+  }
+};
+
+// src/app/modules/management/pages/bus-schedules/bus-schedules.component.ts
+var _forTrack013 = ($index, $item) => $item._id;
+function BusSchedulesComponent_For_20_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "tr", 13)(1, "td", 15)(2, "input", 16);
+    \u0275\u0275twoWayListener("ngModelChange", function BusSchedulesComponent_For_20_Template_input_ngModelChange_2_listener($event) {
+      const busSchedule_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      \u0275\u0275twoWayBindingSet(busSchedule_r2.selected, $event) || (busSchedule_r2.selected = $event);
+      return \u0275\u0275resetView($event);
+    });
+    \u0275\u0275listener("change", function BusSchedulesComponent_For_20_Template_input_change_2_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.checkSelectAll());
+    });
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(3, "td");
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "td", 15)(6, "button", 17);
+    \u0275\u0275listener("click", function BusSchedulesComponent_For_20_Template_button_click_6_listener() {
+      const busSchedule_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.editBus(busSchedule_r2));
+    });
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(7, "svg", 18);
+    \u0275\u0275element(8, "path", 19);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275namespaceHTML();
+    \u0275\u0275elementStart(9, "button", 20);
+    \u0275\u0275listener("click", function BusSchedulesComponent_For_20_Template_button_click_9_listener() {
+      const busSchedule_r2 = \u0275\u0275restoreView(_r1).$implicit;
+      const ctx_r2 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r2.deleteBus(busSchedule_r2._id));
+    });
+    \u0275\u0275namespaceSVG();
+    \u0275\u0275elementStart(10, "svg", 18);
+    \u0275\u0275element(11, "path", 21);
+    \u0275\u0275elementEnd()()()();
+  }
+  if (rf & 2) {
+    const busSchedule_r2 = ctx.$implicit;
+    \u0275\u0275advance(2);
+    \u0275\u0275twoWayProperty("ngModel", busSchedule_r2.selected);
+    \u0275\u0275attribute("aria-label", "Select " + busSchedule_r2.name);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(busSchedule_r2.name);
+  }
+}
+function BusSchedulesComponent_ForEmpty_21_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "tr")(1, "td", 22);
+    \u0275\u0275text(2, "No busSchedules found");
+    \u0275\u0275elementEnd()();
+  }
+}
+var BusSchedulesComponent = class _BusSchedulesComponent {
+  constructor(busSchedulesService, dialog, utils, router) {
+    this.busSchedulesService = busSchedulesService;
+    this.dialog = dialog;
+    this.utils = utils;
+    this.router = router;
+    this.searchBusSchedule = new SearchBusSchedule();
+    this.selectAll = false;
+    this.pageIdx = 1;
+    this.pageSize = 5;
+    this.totalPage = 0;
+    this.totalItem = 0;
+    this.keyword = "";
+    this.sortBy = "";
+    this.isLoadingBus = false;
+  }
+  ngOnInit() {
+    this.loadData();
+  }
+  loadData() {
+    this.isLoadingBus = true;
+    this.busSchedulesService.searchBusSchedule(this.pageIdx, this.pageSize, this.keyword, this.sortBy).subscribe({
+      next: (res) => {
+        if (res) {
+          this.searchBusSchedule = res;
+          console.log("\u{1F680} ~ BusesComponent ~ this.busSchedulesService.searchBus ~ this.searchBusSchedule:", this.searchBusSchedule);
+          this.totalItem = this.searchBusSchedule.totalItem;
+          this.totalPage = this.searchBusSchedule.totalPage;
+        }
+        this.isLoadingBus = false;
+      },
+      error: (error2) => {
+        this.utils.handleRequestError(error2);
+        this.isLoadingBus = false;
+      }
+    });
+  }
+  toggleBus(event2) {
+    const checked = event2.target.checked;
+    this.searchBusSchedule.busSchedules = this.searchBusSchedule.busSchedules.map((busSchedule) => __spreadProps(__spreadValues({}, busSchedule), {
+      selected: checked
+    }));
+  }
+  checkSelectAll() {
+    this.selectAll = !this.searchBusSchedule.busSchedules.some((busSchedule) => !busSchedule.selected);
+  }
+  deleteBus(id) {
+    const dialogRef = this.dialog.open(MaterialDialogComponent, {
+      data: {
+        icon: {
+          type: "dangerous"
+        },
+        title: "Delete Bus",
+        content: "Are you sure you want to delete this bus? All of your data will be permanently removed. This action cannot be undone.",
+        btn: [
+          {
+            label: "NO",
+            type: "cancel"
+          },
+          {
+            label: "YES",
+            type: "submit"
+          }
+        ]
+      }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.busSchedulesService.deleteBusSchedule(id).subscribe({
+          next: (res) => {
+            if (res) {
+              this.searchBusSchedule.busSchedules = this.searchBusSchedule.busSchedules.filter((bus) => bus._id !== id);
+              toast.success("Bus deleted successfully");
+            }
+          },
+          error: (error2) => this.utils.handleRequestError(error2)
+        });
+      }
+    });
+  }
+  editBus(busSchedule) {
+    const params = { busSchedule: JSON.stringify(busSchedule) };
+    this.router.navigateByUrl("/management/bus-routes/bus-route-detail", { state: params });
+  }
+  addBus() {
+    this.router.navigate(["/management/bus-routes/bus-route-detail"]);
+  }
+  reloadBusPage(data) {
+    this.pageIdx = data.pageIdx;
+    this.pageSize = data.pageSize;
+    this.loadData();
+  }
+  searchBusPage(keyword) {
+    this.pageIdx = 1;
+    this.keyword = keyword;
+    this.loadData();
+  }
+  sortBusPage(sortBy) {
+    this.sortBy = sortBy;
+    this.loadData();
+  }
+  handleRequestError(error2) {
+    const msg = "An error occurred while processing your request";
+    toast.error(msg, {
+      position: "bottom-right",
+      description: error2.message || "Please try again later",
+      action: {
+        label: "Dismiss",
+        onClick: () => {
+        }
+      },
+      actionButtonStyle: "background-color:#DC2626; color:white;"
+    });
+  }
+  static {
+    this.\u0275fac = function BusSchedulesComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusSchedulesComponent)(\u0275\u0275directiveInject(BusSchedulesService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(Utils), \u0275\u0275directiveInject(Router));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusSchedulesComponent, selectors: [["app-bus-schedules"]], standalone: false, decls: 23, vars: 9, consts: [[1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], ["aria-label", "Import CSV", 1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold"], ["aria-label", "Add Bus", 1, "bg-primary", "text-primary-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "p-2"], [3, "sortDataEvent", "searchDataEvent", "title", "totalItem"], [1, "overflow-x-auto"], [1, "text-muted-foreground", "w-full", "table-auto", "border-collapse", "text-left", "align-middle", "leading-5"], [1, "border-muted/20", "text-muted-foreground", "border", "text-xs"], [1, "w-[50px]"], ["type", "checkbox", "aria-label", "Select all busSchedules", 1, "checkbox", "checkbox-sm", 3, "change", "ngModelChange", "ngModel"], [1, "min-w-[200px]"], [1, "w-[100px]", "text-center"], [1, "hover:bg-card/50"], [3, "reloadDataAndPageEvent", "pageIdx", "pageSize", "totalItem", "isLoading", "totalPage"], [1, "text-center"], ["type", "checkbox", 1, "checkbox", "checkbox-sm", 3, "ngModelChange", "change", "ngModel"], ["aria-label", "Edit busSchedule", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["viewBox", "0 0 20 20", "fill", "currentColor", 1, "size-5"], ["d", "m2.695 14.762-1.262 3.155a.5.5 0 0 0 .65.65l3.155-1.262a4 4 0 0 0 1.343-.886L17.5 5.501a2.121 2.121 0 0 0-3-3L3.58 13.419a4 4 0 0 0-.885 1.343Z"], ["aria-label", "Delete busSchedule", 1, "text-muted-foreground", "hover:bg-card", "hover:text-foreground", "inline-flex", "h-7", "w-7", "items-center", "justify-center", "rounded-md", 3, "click"], ["fill-rule", "evenodd", "d", "M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z", "clip-rule", "evenodd"], ["colspan", "4", 1, "py-4", "text-center", "text-sm"]], template: function BusSchedulesComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "button", 2);
+        \u0275\u0275text(3, " Import CSV ");
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(4, "button", 3);
+        \u0275\u0275listener("click", function BusSchedulesComponent_Template_button_click_4_listener() {
+          return ctx.addBus();
+        });
+        \u0275\u0275text(5, " Add Bus Schedule ");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(6, "div", 4)(7, "app-table-action", 5);
+        \u0275\u0275listener("sortDataEvent", function BusSchedulesComponent_Template_app_table_action_sortDataEvent_7_listener($event) {
+          return ctx.sortBusPage($event);
+        })("searchDataEvent", function BusSchedulesComponent_Template_app_table_action_searchDataEvent_7_listener($event) {
+          return ctx.searchBusPage($event);
+        });
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(8, "div", 6)(9, "table", 7)(10, "thead", 8)(11, "tr")(12, "th", 9)(13, "input", 10);
+        \u0275\u0275listener("change", function BusSchedulesComponent_Template_input_change_13_listener($event) {
+          return ctx.toggleBus($event);
+        });
+        \u0275\u0275twoWayListener("ngModelChange", function BusSchedulesComponent_Template_input_ngModelChange_13_listener($event) {
+          \u0275\u0275twoWayBindingSet(ctx.selectAll, $event) || (ctx.selectAll = $event);
+          return $event;
+        });
+        \u0275\u0275elementEnd()();
+        \u0275\u0275elementStart(14, "th", 11);
+        \u0275\u0275text(15, "Name");
+        \u0275\u0275elementEnd();
+        \u0275\u0275elementStart(16, "th", 12);
+        \u0275\u0275text(17, "Actions");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(18, "tbody");
+        \u0275\u0275repeaterCreate(19, BusSchedulesComponent_For_20_Template, 12, 3, "tr", 13, _forTrack013, false, BusSchedulesComponent_ForEmpty_21_Template, 3, 0, "tr");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(22, "app-table-footer", 14);
+        \u0275\u0275listener("reloadDataAndPageEvent", function BusSchedulesComponent_Template_app_table_footer_reloadDataAndPageEvent_22_listener($event) {
+          return ctx.reloadBusPage($event);
+        });
+        \u0275\u0275elementEnd()();
+      }
+      if (rf & 2) {
+        \u0275\u0275advance(7);
+        \u0275\u0275property("title", "Bus Schedule")("totalItem", ctx.totalItem);
+        \u0275\u0275advance(6);
+        \u0275\u0275twoWayProperty("ngModel", ctx.selectAll);
+        \u0275\u0275advance(6);
+        \u0275\u0275repeater(ctx.searchBusSchedule.busSchedules);
+        \u0275\u0275advance(3);
+        \u0275\u0275property("pageIdx", ctx.pageIdx)("pageSize", ctx.pageSize)("totalItem", ctx.totalItem)("isLoading", ctx.isLoadingBus)("totalPage", ctx.totalPage);
+      }
+    }, dependencies: [CheckboxControlValueAccessor, NgControlStatus, NgModel, TableFooterComponent, TableActionComponent], styles: ["\n\ntd[_ngcontent-%COMP%] {\n  padding: 0.75rem 1rem;\n  font-size: 0.85rem;\n}\nth[_ngcontent-%COMP%] {\n  font-weight: 500;\n  padding: 0.625rem 1rem;\n  font-weight: 500;\n  font-size: 0.8125rem;\n  line-height: 1.125rem;\n  vertical-align: middle;\n  @apply border-b border-r;\n}\n/*# sourceMappingURL=bus-schedules.component.css.map */"] });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BusSchedulesComponent, { className: "BusSchedulesComponent", filePath: "src/app/modules/management/pages/bus-schedules/bus-schedules.component.ts", lineNumber: 16 });
+})();
+
+// src/app/modules/management/pages/bus-schedules/pages/bus-schedule-detail/bus-schedule-detail.component.ts
+function BusScheduleDetailComponent_form_5_ng_template_9_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusScheduleDetailComponent_form_5_ng_template_9_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r3);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busScheduleDetailForm.controls["name"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_11_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_11_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusScheduleDetailComponent_form_5_ng_template_11_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busScheduleDetailForm.controls["name"].errors == null ? null : ctx_r1.busScheduleDetailForm.controls["name"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_20_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r4 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusScheduleDetailComponent_form_5_ng_template_20_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r4);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busScheduleDetailForm.controls["distance"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_22_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_22_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusScheduleDetailComponent_form_5_ng_template_22_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busScheduleDetailForm.controls["distance"].errors == null ? null : ctx_r1.busScheduleDetailForm.controls["distance"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_32_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r5 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusScheduleDetailComponent_form_5_ng_template_32_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r5);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busScheduleDetailForm.controls["distanceTime"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_34_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_34_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusScheduleDetailComponent_form_5_ng_template_34_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busScheduleDetailForm.controls["distanceTime"].errors == null ? null : ctx_r1.busScheduleDetailForm.controls["distanceTime"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_43_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r6 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "span", 37);
+    \u0275\u0275listener("click", function BusScheduleDetailComponent_form_5_ng_template_43_Template_span_click_0_listener() {
+      \u0275\u0275restoreView(_r6);
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.busScheduleDetailForm.controls["price"].patchValue(""));
+    });
+    \u0275\u0275elementEnd();
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_45_Conditional_1_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275text(0, " Vui l\xF2ng nh\u1EADp tr\u01B0\u1EDDng n\xE0y ");
+  }
+}
+function BusScheduleDetailComponent_form_5_ng_template_45_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "span", 38);
+    \u0275\u0275template(1, BusScheduleDetailComponent_form_5_ng_template_45_Conditional_1_Template, 1, 0);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275advance();
+    \u0275\u0275conditional((ctx_r1.busScheduleDetailForm.controls["price"].errors == null ? null : ctx_r1.busScheduleDetailForm.controls["price"].errors["required"]) ? 1 : -1);
+  }
+}
+function BusScheduleDetailComponent_form_5_nz_form_item_53_For_5_For_2_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option", 44)(1, "div", 45)(2, "span", 46);
+    \u0275\u0275text(3);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busStation_r7 = ctx.$implicit;
+    \u0275\u0275property("nzLabel", busStation_r7.name)("nzValue", busStation_r7._id);
+    \u0275\u0275advance(3);
+    \u0275\u0275textInterpolate1(" ", busStation_r7.name, " ");
+  }
+}
+function BusScheduleDetailComponent_form_5_nz_form_item_53_For_5_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-option-group", 42);
+    \u0275\u0275repeaterCreate(1, BusScheduleDetailComponent_form_5_nz_form_item_53_For_5_For_2_Template, 4, 3, "nz-option", 44, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const busProvince_r8 = ctx.$implicit;
+    \u0275\u0275propertyInterpolate("nzLabel", busProvince_r8.name);
+    \u0275\u0275advance();
+    \u0275\u0275repeater(busProvince_r8.busStations);
+  }
+}
+function BusScheduleDetailComponent_form_5_nz_form_item_53_svg_icon_6_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r9 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "svg-icon", 47);
+    \u0275\u0275listener("click", function BusScheduleDetailComponent_form_5_nz_form_item_53_svg_icon_6_Template_svg_icon_click_0_listener() {
+      \u0275\u0275restoreView(_r9);
+      const i_r10 = \u0275\u0275nextContext().index;
+      const ctx_r1 = \u0275\u0275nextContext(2);
+      return \u0275\u0275resetView(ctx_r1.removeBreakPoint(i_r10));
+    });
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    \u0275\u0275property("svgClass", "h-5 w-5 ml-2 cursor-pointer");
+  }
+}
+function BusScheduleDetailComponent_form_5_nz_form_item_53_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "nz-form-item", 39)(1, "nz-form-control")(2, "nz-input-group", 40)(3, "nz-select", 41);
+    \u0275\u0275repeaterCreate(4, BusScheduleDetailComponent_form_5_nz_form_item_53_For_5_Template, 3, 1, "nz-option-group", 42, \u0275\u0275repeaterTrackByIdentity);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(6, BusScheduleDetailComponent_form_5_nz_form_item_53_svg_icon_6_Template, 1, 1, "svg-icon", 43);
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const i_r10 = ctx.index;
+    const ctx_r1 = \u0275\u0275nextContext(2);
+    \u0275\u0275property("formGroupName", i_r10);
+    \u0275\u0275advance(4);
+    \u0275\u0275repeater(ctx_r1.filteredProvinces);
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngIf", ctx_r1.breakPoints.controls.length > 2);
+  }
+}
+function BusScheduleDetailComponent_form_5_div_58_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 48)(1, "span", 49);
+    \u0275\u0275text(2, "Vui l\xF2ng ch\u1ECDn \xEDt nh\u1EA5t 2 bus station.");
+    \u0275\u0275elementEnd()();
+  }
+}
+function BusScheduleDetailComponent_form_5_div_59_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 48)(1, "span", 49);
+    \u0275\u0275text(2, "Kh\xF4ng \u0111\u01B0\u1EE3c ch\u1ECDn 2 bus station gi\u1ED1ng nhau.");
+    \u0275\u0275elementEnd()();
+  }
+}
+function BusScheduleDetailComponent_form_5_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r1 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "form", 13);
+    \u0275\u0275listener("ngSubmit", function BusScheduleDetailComponent_form_5_Template_form_ngSubmit_0_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.onSubmit());
+    });
+    \u0275\u0275elementStart(1, "div", 14)(2, "div", 15)(3, "nz-form-item", 16)(4, "nz-form-label", 17);
+    \u0275\u0275text(5, "Name");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(6, "nz-form-control", 18)(7, "nz-input-group", 19);
+    \u0275\u0275element(8, "input", 20);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(9, BusScheduleDetailComponent_form_5_ng_template_9_Template, 1, 0, "ng-template", null, 0, \u0275\u0275templateRefExtractor)(11, BusScheduleDetailComponent_form_5_ng_template_11_Template, 2, 1, "ng-template", null, 1, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(13, "div", 15)(14, "nz-form-item", 16)(15, "nz-form-label", 21);
+    \u0275\u0275text(16, "Distance");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(17, "nz-form-control", 18)(18, "nz-input-group", 19);
+    \u0275\u0275element(19, "input", 22);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(20, BusScheduleDetailComponent_form_5_ng_template_20_Template, 1, 0, "ng-template", null, 2, \u0275\u0275templateRefExtractor)(22, BusScheduleDetailComponent_form_5_ng_template_22_Template, 2, 1, "ng-template", null, 3, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(24, "div", 14)(25, "div", 15)(26, "nz-form-item", 16)(27, "nz-form-label", 23);
+    \u0275\u0275text(28, "DistanceTime");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(29, "nz-form-control", 18)(30, "nz-input-group", 19);
+    \u0275\u0275element(31, "input", 24);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(32, BusScheduleDetailComponent_form_5_ng_template_32_Template, 1, 0, "ng-template", null, 4, \u0275\u0275templateRefExtractor)(34, BusScheduleDetailComponent_form_5_ng_template_34_Template, 2, 1, "ng-template", null, 5, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275elementStart(36, "div", 15)(37, "nz-form-item", 16)(38, "nz-form-label", 25);
+    \u0275\u0275text(39, "Price");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(40, "nz-form-control", 18)(41, "nz-input-group", 19);
+    \u0275\u0275element(42, "input", 26);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(43, BusScheduleDetailComponent_form_5_ng_template_43_Template, 1, 0, "ng-template", null, 6, \u0275\u0275templateRefExtractor)(45, BusScheduleDetailComponent_form_5_ng_template_45_Template, 2, 1, "ng-template", null, 7, \u0275\u0275templateRefExtractor);
+    \u0275\u0275elementEnd()()()();
+    \u0275\u0275elementStart(47, "div", 14)(48, "div", 27)(49, "div")(50, "label", 28);
+    \u0275\u0275text(51, "Bus Station");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(52, "div", 29);
+    \u0275\u0275listener("cdkDropListDropped", function BusScheduleDetailComponent_form_5_Template_div_cdkDropListDropped_52_listener($event) {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.drop($event));
+    });
+    \u0275\u0275template(53, BusScheduleDetailComponent_form_5_nz_form_item_53_Template, 7, 2, "nz-form-item", 30);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(54, "div", 31)(55, "button", 32);
+    \u0275\u0275listener("click", function BusScheduleDetailComponent_form_5_Template_button_click_55_listener() {
+      \u0275\u0275restoreView(_r1);
+      const ctx_r1 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r1.addBreakPoint());
+    });
+    \u0275\u0275element(56, "svg-icon", 33);
+    \u0275\u0275text(57, " Add Break Point ");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275template(58, BusScheduleDetailComponent_form_5_div_58_Template, 3, 0, "div", 34)(59, BusScheduleDetailComponent_form_5_div_59_Template, 3, 0, "div", 34);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(60, "div", 35)(61, "button", 36);
+    \u0275\u0275text(62, " SAVE ");
+    \u0275\u0275elementEnd()()();
+  }
+  if (rf & 2) {
+    const busScheduleDetailDistanceClearTpl_r11 = \u0275\u0275reference(21);
+    const busScheduleDetailDistanceErrorTpl_r12 = \u0275\u0275reference(23);
+    const busScheduleDetailDistanceTimeClearTpl_r13 = \u0275\u0275reference(33);
+    const busScheduleDetailDistanceTimeErrorTpl_r14 = \u0275\u0275reference(35);
+    const busScheduleDetailPriceTimeClearTpl_r15 = \u0275\u0275reference(44);
+    const busScheduleDetailPriceTimeErrorTpl_r16 = \u0275\u0275reference(46);
+    const ctx_r1 = \u0275\u0275nextContext();
+    \u0275\u0275property("formGroup", ctx_r1.busScheduleDetailForm);
+    \u0275\u0275advance(6);
+    \u0275\u0275property("nzErrorTip", busScheduleDetailDistanceTimeErrorTpl_r14);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busScheduleDetailDistanceTimeClearTpl_r13);
+    \u0275\u0275advance(10);
+    \u0275\u0275property("nzErrorTip", busScheduleDetailDistanceErrorTpl_r12);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busScheduleDetailDistanceClearTpl_r11);
+    \u0275\u0275advance(11);
+    \u0275\u0275property("nzErrorTip", busScheduleDetailDistanceTimeErrorTpl_r14);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busScheduleDetailDistanceTimeClearTpl_r13);
+    \u0275\u0275advance(10);
+    \u0275\u0275property("nzErrorTip", busScheduleDetailPriceTimeErrorTpl_r16);
+    \u0275\u0275advance();
+    \u0275\u0275property("nzSuffix", busScheduleDetailPriceTimeClearTpl_r15);
+    \u0275\u0275advance(12);
+    \u0275\u0275property("ngForOf", ctx_r1.breakPoints.controls);
+    \u0275\u0275advance(3);
+    \u0275\u0275property("svgClass", "h-5 w-5 mr-2");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngIf", ctx_r1.busScheduleDetailForm.controls["breakPoints"].touched && ctx_r1.checkBreakPointsErrors());
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r1.busScheduleDetailForm.controls["breakPoints"].touched && ctx_r1.checkBreakPointsDuplicateErrors());
+  }
+}
+var BusScheduleDetailComponent = class _BusScheduleDetailComponent {
+  constructor(fb, utils, location, busSchedulesService, busStationsService, busProvincesService, router) {
+    this.fb = fb;
+    this.utils = utils;
+    this.location = location;
+    this.busSchedulesService = busSchedulesService;
+    this.busStationsService = busStationsService;
+    this.busProvincesService = busProvincesService;
+    this.router = router;
+    this.busStations = [];
+    this.busProvinces = [];
+    this.filteredProvinces = [];
+  }
+  ngOnInit() {
+    this.getQueryParams();
+    this.initData();
+  }
+  getQueryParams() {
+    return __async(this, null, function* () {
+      const params = history.state;
+      if (params) {
+        this.busSchedule = params["busSchedule"] ? JSON.parse(params["busSchedule"]) : null;
+        console.log("\u{1F680} ~ BusScheduleDetailComponent ~ getQueryParams ~ this.busSchedule:", this.busSchedule);
+      }
+    });
+  }
+  initData() {
+    let findAllBusStations = this.busStationsService.findAll();
+    let findAllBusProvinces = this.busProvincesService.findAll();
+    let request = [findAllBusStations, findAllBusProvinces];
+    combineLatest(request).subscribe((_0) => __async(this, [_0], function* ([busStations, busProvinces]) {
+      this.busStations = busStations;
+      this.busProvinces = busProvinces;
+      this.filterProvinces();
+      this.initForm();
+    }));
+  }
+  initForm() {
+    return __async(this, null, function* () {
+      const { name: name2 = "" } = this.busSchedule || {};
+      this.busScheduleDetailForm = this.fb.group({
+        name: [name2, [Validators.required]]
+      });
+    });
+  }
+  createBreakPoint(busStationId = "") {
+    return this.fb.group({
+      busStationId: [busStationId, Validators.required]
+    });
+  }
+  addBreakPoint(busStationId = "") {
+    const breakPoints = this.busScheduleDetailForm.get("breakPoints");
+    breakPoints.push(this.createBreakPoint(busStationId));
+  }
+  filterProvinces() {
+    this.filteredProvinces = this.busProvinces.filter((province) => this.busStations.some((busStation) => busStation.provinceId === province._id)).map((province) => {
+      const matchingBusStations = this.busStations.filter((busStation) => busStation.provinceId === province._id);
+      return __spreadProps(__spreadValues({}, province), {
+        busStations: matchingBusStations
+        // Không lặp lại
+      });
+    });
+  }
+  removeBreakPoint(index) {
+    const breakPoints = this.busScheduleDetailForm.get("breakPoints");
+    if (index >= 0 && index < breakPoints.length) {
+      breakPoints.removeAt(index);
+    } else {
+      console.warn(`Invalid index ${index}. Cannot remove breakpoint.`);
+    }
+  }
+  get breakPoints() {
+    return this.busScheduleDetailForm.get("breakPoints");
+  }
+  checkBreakPointsErrors() {
+    const breakPoints = this.busScheduleDetailForm?.get("breakPoints");
+    return breakPoints?.controls?.some((control) => control?.get("busStationId")?.errors?.["required"] === true);
+  }
+  checkBreakPointsDuplicateErrors() {
+    const breakPoints = this.busScheduleDetailForm?.get("breakPoints");
+    const busStationIds = breakPoints?.controls.map((control) => control.get("busStationId")?.value).filter((id) => id && id.trim() !== "");
+    return busStationIds.some((id, index) => busStationIds.indexOf(id) !== index);
+  }
+  backPage() {
+    this.location.back();
+  }
+  drop(event2) {
+    moveItemInArray(this.busStations, event2.previousIndex, event2.currentIndex);
+  }
+  onSubmit() {
+    if (!this.busScheduleDetailForm.valid) {
+      this.utils.markFormGroupTouched(this.busScheduleDetailForm);
+      return;
+    }
+    const data = this.busScheduleDetailForm.getRawValue();
+    const busSchedule2Create = __spreadValues({}, data);
+    console.log("\u{1F680} ~ BusScheduleDetailComponent ~ onSubmit ~ busSchedule2Create:", busSchedule2Create);
+    if (this.busSchedule) {
+      const busSchedule2Update = __spreadProps(__spreadValues({}, busSchedule2Create), {
+        _id: this.busSchedule._id
+        // Thêm thuộc tính _id
+      });
+      this.updateBus(busSchedule2Update);
+      return;
+    }
+    this.createBus(busSchedule2Create);
+  }
+  updateBus(busSchedule2Update) {
+    this.busSchedulesService.updateBusSchedule(busSchedule2Update).subscribe({
+      next: (res) => {
+        if (res) {
+          const updatedState = __spreadProps(__spreadValues({}, history.state), { busSchedule: JSON.stringify(res) });
+          window.history.replaceState(updatedState, "", window.location.href);
+          toast.success("Bus Route update successfully");
+        }
+      },
+      error: (error2) => this.utils.handleRequestError(error2)
+    });
+  }
+  createBus(busSchedule2Create) {
+    this.busSchedulesService.createBusSchedule(busSchedule2Create).subscribe({
+      next: (res) => {
+        if (res) {
+          toast.success("Bus Route added successfully");
+        }
+      },
+      error: (error2) => this.utils.handleRequestError(error2)
+    });
+  }
+  static {
+    this.\u0275fac = function BusScheduleDetailComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _BusScheduleDetailComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(Utils), \u0275\u0275directiveInject(Location), \u0275\u0275directiveInject(BusSchedulesService), \u0275\u0275directiveInject(BusStationsService), \u0275\u0275directiveInject(BusProvincesService), \u0275\u0275directiveInject(Router));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BusScheduleDetailComponent, selectors: [["app-bus-schedule-detail"]], standalone: false, decls: 6, vars: 1, consts: [["busScheduleDetailNameClearTpl", ""], ["busScheduleDetailNameErrorTpl", ""], ["busScheduleDetailDistanceClearTpl", ""], ["busScheduleDetailDistanceErrorTpl", ""], ["busScheduleDetailDistanceTimeClearTpl", ""], ["busScheduleDetailDistanceTimeErrorTpl", ""], ["busScheduleDetailPriceTimeClearTpl", ""], ["busScheduleDetailPriceTimeErrorTpl", ""], [1, "mb-4", "flex", "justify-end"], [1, "inline-block", "space-x-4"], [1, "bg-muted", "text-muted-foreground", "hover:text-foreground", "rounded-md", "px-4", "py-2.5", "text-xs", "font-semibold", 3, "click"], [1, "border-muted/20", "bg-background", "flex", "min-w-full", "flex-col", "rounded-xl", "border", "px-6", "py-2"], ["nz-form", "", 3, "formGroup", "ngSubmit", 4, "ngIf"], ["nz-form", "", 3, "ngSubmit", "formGroup"], [1, "flex", "gap-4"], [1, "flex", "w-6/12"], [1, "!w-full"], ["nzFor", "name", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], [1, "!flex", "!h-[56px]", "flex-col", 3, "nzErrorTip"], [1, "custom-nz-input-group", "!mt-0", "!mb-0", "!h-[36px]", 3, "nzSuffix"], ["type", "text", "nz-input", "", "formControlName", "name", "placeholder", "Nh\u1EADp Name"], ["nzFor", "distance", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "number", "nz-input", "", "formControlName", "distance", "placeholder", "Nh\u1EADp Distance"], ["nzFor", "distanceTime", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "text", "nz-input", "", "formControlName", "distanceTime", "placeholder", "Nh\u1EADp Distance"], ["nzFor", "price", 1, "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["type", "text", "nz-input", "", "formControlName", "price", "placeholder", "Nh\u1EADp Price"], [1, "flex", "w-6/12", "flex-col"], [1, "ant-form-item-label", "ant-col", "!flex", "!h-[36px]", "!items-center", "!justify-start"], ["formArrayName", "breakPoints", "cdkDropList", "", 1, "drag-drop-list", "flex", "flex-col", "gap-4", 3, "cdkDropListDropped"], ["cdkDrag", "", 3, "formGroupName", 4, "ngFor", "ngForOf"], [1, "mt-4", "flex", "justify-end", "gap-4"], ["nz-button", "", "nzType", "default", 1, "!min-w-24", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500", 3, "click"], ["src", "assets/icons/add-square.svg", 3, "svgClass"], ["class", "animate-fade-down", 4, "ngIf"], [1, "my-5", "flex", "w-full", "justify-end"], ["nz-button", "", "nzType", "default", "type", "submit", 1, "!min-w-24", "!bg-primary", "!flex", "!h-max", "!justify-center", "!rounded-lg", "!py-2", "!px-3", "!text-white", "hover:!border-red-500", "hover:!bg-red-200", "hover:!text-red-500"], ["nz-icon", "", "nzTheme", "fill", "nzType", "close-circle", 1, "ant-input-clear-icon", 3, "click"], [1, "mt-1", "!text-xs", "text-red-500"], ["cdkDrag", "", 3, "formGroupName"], [1, "!flex", "!items-center"], ["nzShowSearch", "", "nzAllowClear", "", "formControlName", "busStationId", "nzPlaceHolder", "Ch\u1ECDn Bus Station"], [3, "nzLabel"], ["src", "assets/icons/trash-red-outline.svg", 3, "svgClass", "click", 4, "ngIf"], ["nzCustomContent", "", 3, "nzLabel", "nzValue"], [1, "flex", "items-center"], [1, "pl-4", "!font-medium"], ["src", "assets/icons/trash-red-outline.svg", 3, "click", "svgClass"], [1, "animate-fade-down"], [1, "pt-1", "text-xs", "text-red-500"]], template: function BusScheduleDetailComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "div", 8)(1, "div", 9)(2, "button", 10);
+        \u0275\u0275listener("click", function BusScheduleDetailComponent_Template_button_click_2_listener() {
+          return ctx.backPage();
+        });
+        \u0275\u0275text(3, " Back ");
+        \u0275\u0275elementEnd()()();
+        \u0275\u0275elementStart(4, "div", 11);
+        \u0275\u0275template(5, BusScheduleDetailComponent_form_5_Template, 63, 13, "form", 12);
+        \u0275\u0275elementEnd();
+      }
+      if (rf & 2) {
+        \u0275\u0275advance(5);
+        \u0275\u0275property("ngIf", ctx.busScheduleDetailForm);
+      }
+    }, dependencies: [NgForOf, NgIf, \u0275NgNoValidate, DefaultValueAccessor, NumberValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, FormGroupName, FormArrayName, SvgIconComponent, CdkDropList, CdkDrag, NzOptionComponent, NzSelectComponent, NzOptionGroupComponent, NzButtonComponent, NzTransitionPatchDirective, NzWaveDirective, NzInputDirective, NzInputGroupComponent, NzInputGroupWhitSuffixOrPrefixDirective, NzColDirective, NzRowDirective, NzFormDirective, NzFormItemComponent, NzFormLabelComponent, NzFormControlComponent, NzIconDirective], styles: ["\n\n.drag-drop-list[_ngcontent-%COMP%] {\n  width: 500px;\n  max-width: 100%;\n  overflow: hidden;\n}\n.drag-drop-box[_ngcontent-%COMP%] {\n  align-items: center;\n  justify-content: space-between;\n  cursor: move;\n}\n.cdk-drag-preview[_ngcontent-%COMP%] {\n  box-sizing: border-box;\n  border-radius: 4px;\n  box-shadow:\n    0 5px 5px -3px rgba(0, 0, 0, 0.2),\n    0 8px 10px 1px rgba(0, 0, 0, 0.14),\n    0 3px 14px 2px rgba(0, 0, 0, 0.12);\n}\n.cdk-drag-animating[_ngcontent-%COMP%] {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n.cdk-drag-placeholder[_ngcontent-%COMP%] {\n  opacity: 0;\n}\n.drag-drop-list.cdk-drop-list-dragging[_ngcontent-%COMP%]   .drag-drop-box[_ngcontent-%COMP%]:not(.cdk-drag-placeholder) {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n.ant-form-item-control-input-content[_ngcontent-%COMP%] {\n  display: flex !important;\n}\n/*# sourceMappingURL=bus-schedule-detail..component.css.map */"] });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BusScheduleDetailComponent, { className: "BusScheduleDetailComponent", filePath: "src/app/modules/management/pages/bus-schedules/pages/bus-schedule-detail/bus-schedule-detail.component.ts", lineNumber: 22 });
+})();
+
 // src/app/modules/management/management-routing.module.ts
 var routes = [
   {
@@ -32260,6 +34234,26 @@ var routes = [
       {
         path: "buses",
         component: BusesComponent
+      },
+      {
+        path: "buses/bus-detail",
+        component: BusDetailComponent
+      },
+      {
+        path: "bus-routes",
+        component: BusRoutesComponent
+      },
+      {
+        path: "bus-routes/bus-route-detail",
+        component: BusRouteDetailComponent
+      },
+      {
+        path: "bus-schedules",
+        component: BusSchedulesComponent
+      },
+      {
+        path: "bus-schedules/bus-schedule-detail",
+        component: BusScheduleDetailComponent
       },
       {
         path: "bus-provinves",
@@ -32320,7 +34314,7 @@ var ManagementRoutingModule = class _ManagementRoutingModule {
 };
 
 // src/app/modules/management/components/tooltip/tooltip.component.ts
-var _c026 = ["*", [["", "tooltipContent", ""]]];
+var _c025 = ["*", [["", "tooltipContent", ""]]];
 var _c117 = ["*", "[tooltipContent]"];
 var _c213 = (a0) => ({ "cursor-pointer": a0 });
 function TooltipComponent_div_3_Template(rf, ctx) {
@@ -32354,7 +34348,7 @@ var TooltipComponent = class _TooltipComponent {
   static {
     this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _TooltipComponent, selectors: [["app-tooltip"]], inputs: { disable: "disable" }, standalone: false, ngContentSelectors: _c117, decls: 4, vars: 4, consts: [[1, "relative", "inline-block", 3, "mouseenter", "mouseleave"], [3, "ngClass"], ["class", " animate-fade-in-up absolute z-10 h-32 w-full", 3, "top", "left", 4, "ngIf"], [1, "animate-fade-in-up", "absolute", "z-10", "h-32", "w-full"], [1, "tooltip-content", "h-max", "w-96", "rounded-lg", "bg-white", "shadow-2xl"], [1, "p-4"]], template: function TooltipComponent_Template(rf, ctx) {
       if (rf & 1) {
-        \u0275\u0275projectionDef(_c026);
+        \u0275\u0275projectionDef(_c025);
         \u0275\u0275elementStart(0, "div", 0);
         \u0275\u0275listener("mouseenter", function TooltipComponent_Template_div_mouseenter_0_listener() {
           return ctx.show();
@@ -32381,7 +34375,7 @@ var TooltipComponent = class _TooltipComponent {
 })();
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-switch.mjs
-var _c027 = ["switchElement"];
+var _c026 = ["switchElement"];
 function NzSwitchComponent_Conditional_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275element(0, "nz-icon", 3);
@@ -32572,7 +34566,7 @@ var NzSwitchComponent = (() => {
         selectors: [["nz-switch"]],
         viewQuery: function NzSwitchComponent_Query(rf, ctx) {
           if (rf & 1) {
-            \u0275\u0275viewQuery(_c027, 7);
+            \u0275\u0275viewQuery(_c026, 7);
           }
           if (rf & 2) {
             let _t;
@@ -32759,7 +34753,7 @@ function NzTreeNodeIndentsComponent_For_1_Template(rf, ctx) {
     \u0275\u0275classProp("ant-tree-indent-unit-end", !isEnd_r1);
   }
 }
-var _c028 = [[["nz-tree-node-toggle"], ["", "nz-tree-node-toggle", ""]], [["nz-tree-node-checkbox"]], [["nz-tree-node-option"]], "*"];
+var _c027 = [[["nz-tree-node-toggle"], ["", "nz-tree-node-toggle", ""]], [["nz-tree-node-checkbox"]], [["nz-tree-node-option"]], "*"];
 var _c118 = ["nz-tree-node-toggle, [nz-tree-node-toggle]", "nz-tree-node-checkbox", "nz-tree-node-option", "*"];
 function NzTreeNodeComponent_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
@@ -33411,7 +35405,7 @@ var NzTreeNodeComponent = class _NzTreeNodeComponent extends NzNodeBase {
       consts: [[3, "indents"], ["nzTreeNodeNoopToggle", "", 1, "nz-tree-leaf-line-icon"], [1, "ant-tree-switcher-leaf-line"]],
       template: function NzTreeNodeComponent_Template(rf, ctx) {
         if (rf & 1) {
-          \u0275\u0275projectionDef(_c028);
+          \u0275\u0275projectionDef(_c027);
           \u0275\u0275template(0, NzTreeNodeComponent_Conditional_0_Template, 1, 1, "nz-tree-node-indents", 0);
           \u0275\u0275projection(1);
           \u0275\u0275template(2, NzTreeNodeComponent_Conditional_2_Template, 2, 0, "nz-tree-node-toggle", 1);
@@ -34441,7 +36435,7 @@ var NZ_AFTER_NEXT_RENDER$ = new InjectionToken("nz-after-next-render", {
 });
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-auto-complete.mjs
-var _c029 = [[["nz-auto-option"]]];
+var _c028 = [[["nz-auto-option"]]];
 var _c119 = ["nz-auto-option"];
 function NzAutocompleteOptgroupComponent_ng_container_1_Template(rf, ctx) {
   if (rf & 1) {
@@ -34458,7 +36452,7 @@ function NzAutocompleteOptgroupComponent_ng_container_1_Template(rf, ctx) {
 var _c215 = ["*"];
 var _c37 = ["panel"];
 var _c45 = ["content"];
-var _forTrack012 = ($index, $item) => $item.value;
+var _forTrack014 = ($index, $item) => $item.value;
 function NzAutocompleteComponent_ng_template_0_4_ng_template_0_Template(rf, ctx) {
 }
 function NzAutocompleteComponent_ng_template_0_4_Template(rf, ctx) {
@@ -34486,7 +36480,7 @@ function NzAutocompleteComponent_ng_template_0_ng_template_7_For_1_Template(rf, 
 }
 function NzAutocompleteComponent_ng_template_0_ng_template_7_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, NzAutocompleteComponent_ng_template_0_ng_template_7_For_1_Template, 2, 3, "nz-auto-option", 7, _forTrack012);
+    \u0275\u0275repeaterCreate(0, NzAutocompleteComponent_ng_template_0_ng_template_7_For_1_Template, 2, 3, "nz-auto-option", 7, _forTrack014);
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext(2);
@@ -34539,7 +36533,7 @@ var NzAutocompleteOptgroupComponent = class _NzAutocompleteOptgroupComponent {
       consts: [[1, "ant-select-item", "ant-select-item-group"], [4, "nzStringTemplateOutlet"]],
       template: function NzAutocompleteOptgroupComponent_Template(rf, ctx) {
         if (rf & 1) {
-          \u0275\u0275projectionDef(_c029);
+          \u0275\u0275projectionDef(_c028);
           \u0275\u0275elementStart(0, "div", 0);
           \u0275\u0275template(1, NzAutocompleteOptgroupComponent_ng_container_1_Template, 2, 1, "ng-container", 1);
           \u0275\u0275elementEnd();
@@ -35475,7 +37469,7 @@ var NzAutocompleteModule = class _NzAutocompleteModule {
 })();
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-radio.mjs
-var _c030 = ["*"];
+var _c029 = ["*"];
 var _c120 = ["inputElement"];
 var _c216 = ["nz-radio", ""];
 var NzRadioService = class _NzRadioService {
@@ -35609,7 +37603,7 @@ var NzRadioGroupComponent = class _NzRadioGroupComponent {
         useExisting: forwardRef(() => _NzRadioGroupComponent),
         multi: true
       }]), \u0275\u0275InputTransformsFeature, \u0275\u0275NgOnChangesFeature],
-      ngContentSelectors: _c030,
+      ngContentSelectors: _c029,
       decls: 1,
       vars: 0,
       template: function NzRadioGroupComponent_Template(rf, ctx) {
@@ -35822,7 +37816,7 @@ var NzRadioComponent = class _NzRadioComponent {
         multi: true
       }]), \u0275\u0275InputTransformsFeature],
       attrs: _c216,
-      ngContentSelectors: _c030,
+      ngContentSelectors: _c029,
       decls: 6,
       vars: 24,
       consts: [["inputElement", ""], ["type", "radio", 3, "disabled", "checked"]],
@@ -35965,7 +37959,7 @@ var NzRadioModule = class _NzRadioModule {
 })();
 
 // node_modules/ng-zorro-antd/fesm2022/ng-zorro-antd-modal.mjs
-var _c031 = ["nz-modal-close", ""];
+var _c030 = ["nz-modal-close", ""];
 function NzModalCloseComponent_ng_container_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementContainerStart(0);
@@ -36291,7 +38285,7 @@ var NzModalCloseComponent = class _NzModalCloseComponent {
       selectors: [["button", "nz-modal-close", ""]],
       hostAttrs: ["aria-label", "Close", 1, "ant-modal-close"],
       exportAs: ["NzModalCloseBuiltin"],
-      attrs: _c031,
+      attrs: _c030,
       decls: 2,
       vars: 1,
       consts: [[1, "ant-modal-close-x"], [4, "nzStringTemplateOutlet"], [1, "ant-modal-close-icon", 3, "nzType"]],
@@ -38331,4 +40325,4 @@ lodash/lodash.js:
    * License: MIT
    *)
 */
-//# sourceMappingURL=management.module-VDNFSRJ4.js.map
+//# sourceMappingURL=management.module-VEZHJJ4L.js.map

@@ -13,10 +13,10 @@ import {
 } from "./chunk-7WH35BIY.js";
 import {
   AuthService
-} from "./chunk-4CNFUDSM.js";
+} from "./chunk-N5VCNLMQ.js";
 import "./chunk-YMBW635Q.js";
-import "./chunk-EKPKZCDB.js";
-import "./chunk-NI3WP2DA.js";
+import "./chunk-YTGCPIZN.js";
+import "./chunk-RBZQD2EI.js";
 import {
   AngularSvgIconModule,
   NavigationEnd,
@@ -300,6 +300,8 @@ var Menu = class {
             route: "/management",
             children: [
               { label: "Buses", route: "/management/buses" },
+              { label: "Bus Routes", route: "/management/bus-routes" },
+              { label: "Bus Schedules", route: "/management/bus-schedules" },
               { label: "Bus Provices", route: "/management/bus-provinves" },
               { label: "Bus Stations", route: "/management/bus-stations" },
               { label: "Bus Types", route: "/management/bus-types" },
@@ -1181,6 +1183,7 @@ var package_default = {
     "prettier-plugin-tailwindcss": "^0.1.12",
     "tailwind-scrollbar": "^4.0.0",
     tailwindcss: "^4.0.5",
+    "tailwindcss-animated": "^2.0.0",
     typescript: "~5.7.3"
   },
   config: {
@@ -1602,7 +1605,7 @@ var routes = [
   {
     path: "management",
     component: LayoutComponent,
-    loadChildren: () => import("./management.module-VDNFSRJ4.js").then((m) => m.MangementModule)
+    loadChildren: () => import("./management.module-VEZHJJ4L.js").then((m) => m.MangementModule)
   },
   { path: "", redirectTo: "dashboard", pathMatch: "full" },
   { path: "**", redirectTo: "error/404" }
@@ -1643,4 +1646,4 @@ var LayoutModule = class _LayoutModule {
 export {
   LayoutModule
 };
-//# sourceMappingURL=layout.module-T3WQOHMJ.js.map
+//# sourceMappingURL=layout.module-OAHIBZV3.js.map

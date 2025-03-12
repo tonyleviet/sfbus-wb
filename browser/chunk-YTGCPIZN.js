@@ -1,7 +1,7 @@
 import {
   Environment,
   SkipLoading
-} from "./chunk-NI3WP2DA.js";
+} from "./chunk-RBZQD2EI.js";
 import {
   HttpClient,
   HttpContext,
@@ -76,4 +76,4 @@ var ApiGatewayService = class _ApiGatewayService {
 export {
   ApiGatewayService
 };
-//# sourceMappingURL=chunk-EKPKZCDB.js.map
+//# sourceMappingURL=chunk-YTGCPIZN.js.map

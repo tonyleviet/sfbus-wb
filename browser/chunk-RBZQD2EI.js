@@ -58,7 +58,7 @@ var LoadingInterceptor = class _LoadingInterceptor {
 // src/environments/environment.model.ts
 var Environment = class {
   constructor() {
-    this.apiUrl = "http://localhost:8080";
+    this.apiUrl = "http://192.168.1.164:8080";
     this.production = false;
     this.isWebApp = false;
   }
@@ -70,4 +70,4 @@ export {
   SkipLoading,
   LoadingInterceptor
 };
-//# sourceMappingURL=chunk-NI3WP2DA.js.map
+//# sourceMappingURL=chunk-RBZQD2EI.js.map
