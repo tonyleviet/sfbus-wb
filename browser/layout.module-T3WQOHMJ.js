@@ -1122,7 +1122,7 @@ var package_default = {
   scripts: {
     ng: "ng",
     start: "ng serve --open",
-    build: "ng build --configuration development --output-path dist --base-href /sfbus-wb/",
+    build: "ng build --configuration development --output-path dist --base-href /sfbus-wb/browser/",
     watch: "ng build --watch --configuration development",
     test: "ng test",
     "test:e2e": "npx playwright test --ui",
@@ -1643,4 +1643,4 @@ var LayoutModule = class _LayoutModule {
 export {
   LayoutModule
 };
-//# sourceMappingURL=layout.module-XAMBKS5G.js.map
+//# sourceMappingURL=layout.module-T3WQOHMJ.js.map

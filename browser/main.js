@@ -572,7 +572,7 @@ var NoAuthGuard = class _NoAuthGuard {
 var routes = [
   {
     path: "",
-    loadChildren: () => import("./layout.module-XAMBKS5G.js").then((m) => m.LayoutModule),
+    loadChildren: () => import("./layout.module-T3WQOHMJ.js").then((m) => m.LayoutModule),
     canActivate: [AuthGuard]
   },
   {
