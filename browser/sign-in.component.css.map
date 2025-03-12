@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["src/app/modules/auth/pages/sign-in/sign-in.component.css"],
-  "sourcesContent": ["@reference \"../../../../../styles.css\";\n\n.is__invalid-input {\n  @apply border border-destructive focus:border-destructive focus:outline-hidden focus:ring-transparent;\n}\n\n.is__invalid-error {\n  @apply px-1 pt-1 text-xs text-destructive;\n}"],
-  "mappings": ";AAAA,WAAW;AAEX,CAAC;AACC,SAAO,OAAO,mBAAmB,KAAK,CAAC,mBAAmB,KAAK,CAAC,eAAe,KAAK,CAAC;AACvF;AAEA,CAAC;AACC,SAAO,KAAK,KAAK,QAAQ;AAC3B;",
+  "sourcesContent": ["/*! tailwindcss v4.0.3 | MIT License | https://tailwindcss.com */\n.is__invalid-input{border-style:var(--tw-border-style);border-width:1px;border-color:var(--color-destructive)}.is__invalid-input:focus{border-color:var(--color-destructive);--tw-ring-color:transparent;outline-style:none}@media (forced-colors:active){.is__invalid-input:focus{outline-offset:2px;outline:2px solid #0000}}.is__invalid-error{padding-inline:calc(var(--spacing)*1);padding-top:calc(var(--spacing)*1);font-size:var(--text-xs);line-height:var(--tw-leading,var(--text-xs--line-height));color:var(--color-destructive)}@property --tw-border-style{syntax:\"*\";inherits:false;initial-value:solid}"],
+  "mappings": ";AACA,CAAA;AAAmB,gBAAA,IAAA;AAAoC,gBAAA;AAAiB,gBAAA,IAAA;AAAqC;AAAC,CAA9G,iBAA8G;AAAyB,gBAAA,IAAA;AAAsC,kBAAA;AAA4B,iBAAA;AAAkB;AAAC,OAAA,CAAA,aAAA,CAAA;AAA8B,GAA1P,iBAA0P;AAAyB,oBAAA;AAAmB,aAAA,IAAA,MAAA;AAAuB;AAAC;AAAC,CAAA;AAAmB,kBAAA,KAAA,IAAA,UAAA,CAAA;AAAsC,eAAA,KAAA,IAAA,UAAA,CAAA;AAAmC,aAAA,IAAA;AAAyB,eAAA,IAAA,YAAA,CAAA,IAAA;AAA0D,SAAA,IAAA;AAA8B;AAAC,UAAA,kBAAA,EAA4B,MAAA,CAAA,GAAU,CAAC,QAAA,CAAA,KAAc,CAAC,aAAA,CAAA;",
   "names": []
 }

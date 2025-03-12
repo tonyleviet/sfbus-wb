@@ -64,7 +64,7 @@ import {
   Environment,
   LoadingInterceptor,
   LoadingService
-} from "./chunk-RBZQD2EI.js";
+} from "./chunk-NI3WP2DA.js";
 import {
   AngularSvgIconModule,
   BrowserModule,
@@ -115,172 +115,6 @@ import {
   ɵɵtemplate,
   ɵɵtext
 } from "./chunk-NHZPFPRM.js";
-
-// src/environments/environment.ts
-var environment = class extends Environment {
-  constructor() {
-    super(...arguments);
-    this.production = false;
-  }
-};
-var ENV = new environment();
-
-// src/app/shared/components/responsive-helper/responsive-helper.component.ts
-function ResponsiveHelperComponent_div_0_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 1)(1, "span", 2);
-    \u0275\u0275text(2, "sm");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(3, "span", 3);
-    \u0275\u0275text(4, "md");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(5, "span", 4);
-    \u0275\u0275text(6, "lg");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "span", 5);
-    \u0275\u0275text(8, "xl");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "span", 6);
-    \u0275\u0275text(10, "2xl");
-    \u0275\u0275elementEnd()();
-  }
-}
-var ResponsiveHelperComponent = class _ResponsiveHelperComponent {
-  constructor() {
-    this.env = environment;
-  }
-  ngOnInit() {
-  }
-  static {
-    this.\u0275fac = function ResponsiveHelperComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _ResponsiveHelperComponent)();
-    };
-  }
-  static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ResponsiveHelperComponent, selectors: [["app-responsive-helper"]], decls: 1, vars: 1, consts: [["class", "fixed bottom-20 right-5 hidden rounded-md bg-primary py-1 px-3 align-middle text-sm font-medium text-primary-foreground sm:block", 4, "ngIf"], [1, "fixed", "bottom-20", "right-5", "hidden", "rounded-md", "bg-primary", "py-1", "px-3", "align-middle", "text-sm", "font-medium", "text-primary-foreground", "sm:block"], [1, "hidden", "sm:block", "md:hidden"], [1, "hidden", "md:block", "lg:hidden"], [1, "hidden", "lg:block", "xl:hidden"], [1, "hidden", "xl:block", "2xl:hidden"], [1, "hidden", "2xl:block"]], template: function ResponsiveHelperComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275template(0, ResponsiveHelperComponent_div_0_Template, 11, 0, "div", 0);
-      }
-      if (rf & 2) {
-        \u0275\u0275property("ngIf", !ctx.env.production);
-      }
-    }, dependencies: [NgIf], encapsulation: 2 });
-  }
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ResponsiveHelperComponent, { className: "ResponsiveHelperComponent", filePath: "src/app/shared/components/responsive-helper/responsive-helper.component.ts", lineNumber: 11 });
-})();
-
-// src/app/shared/components/loadding-screen/loadding-screen.component.ts
-function LoaddingScreenComponent_Conditional_0_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "div", 2);
-    \u0275\u0275element(3, "img", 3);
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "div", 4)(5, "span", 5);
-    \u0275\u0275text(6, "L");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(7, "span", 6);
-    \u0275\u0275text(8, "O");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(9, "span", 7);
-    \u0275\u0275text(10, "A");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(11, "span", 8);
-    \u0275\u0275text(12, "D");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(13, "span", 9);
-    \u0275\u0275text(14, "I");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(15, "span", 10);
-    \u0275\u0275text(16, "N");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(17, "span", 11);
-    \u0275\u0275text(18, "G");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(19, "span", 12);
-    \u0275\u0275text(20, ".");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(21, "span", 12);
-    \u0275\u0275text(22, ".");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(23, "span", 12);
-    \u0275\u0275text(24, ".");
-    \u0275\u0275elementEnd()()()();
-  }
-}
-var LoaddingScreenComponent = class _LoaddingScreenComponent {
-  constructor(loadingService, router) {
-    this.loadingService = loadingService;
-    this.router = router;
-    this.detectRouteTransitions = false;
-    this.loading$ = false;
-    this.loadingService.loading$.subscribe((res) => {
-      this.loading$ = res;
-    });
-  }
-  ngOnInit() {
-    if (this.detectRouteTransitions) {
-      this.router.events.pipe(tap((event) => {
-        if (event instanceof RouteConfigLoadStart) {
-          this.loadingService.loadingOn();
-        } else if (event instanceof RouteConfigLoadEnd) {
-          this.loadingService.loadingOff();
-        }
-      })).subscribe();
-    }
-  }
-  static {
-    this.\u0275fac = function LoaddingScreenComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _LoaddingScreenComponent)(\u0275\u0275directiveInject(LoadingService), \u0275\u0275directiveInject(Router));
-    };
-  }
-  static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _LoaddingScreenComponent, selectors: [["app-loadding-screen"]], inputs: { detectRouteTransitions: "detectRouteTransitions" }, decls: 1, vars: 1, consts: [["id", "page"], ["id", "container"], [1, "flex", "items-center", "justify-center", "w-full"], ["src", "assets/images/logo.png", "alt", "", 1, "w-42"], [1, "loading", "loading06"], ["data-text", "L"], ["data-text", "O"], ["data-text", "A"], ["data-text", "D"], ["data-text", "I"], ["data-text", "N"], ["data-text", "G"], ["data-text", "."]], template: function LoaddingScreenComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275template(0, LoaddingScreenComponent_Conditional_0_Template, 25, 0, "div", 0);
-      }
-      if (rf & 2) {
-        \u0275\u0275conditional(ctx.loading$ === true ? 0 : -1);
-      }
-    }, styles: ['\n\n#page[_ngcontent-%COMP%] {\n  position: fixed;\n  z-index: 100;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.32);\n  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);\n}\n#container[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  flex-wrap: wrap;\n}\n.loading[_ngcontent-%COMP%] {\n  font-size: 20px;\n  font-family: "Montserrat", sans-serif;\n  font-weight: 800;\n  text-align: center;\n}\n.loading[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: inline-block;\n  margin: 0 -0.05em;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  position: relative;\n  color: black;\n  padding: 0 2px;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]::after {\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: attr(data-text);\n  color: #fff;\n  opacity: 0;\n  transform: rotateY(-90deg);\n  animation: _ngcontent-%COMP%_loading06 4s infinite;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(2)::after {\n  animation-delay: 0.2s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(3)::after {\n  animation-delay: 0.4s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(4)::after {\n  animation-delay: 0.6s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(5)::after {\n  animation-delay: 0.8s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(6)::after {\n  animation-delay: 1s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(7)::after {\n  animation-delay: 1.2s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(8)::after {\n  animation-delay: 1.4s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(9)::after {\n  animation-delay: 1.6s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(10)::after {\n  animation-delay: 1.8s;\n}\n@keyframes _ngcontent-%COMP%_loading06 {\n  0%, 75%, 100% {\n    transform: rotateY(-90deg);\n    opacity: 0;\n  }\n  25%, 50% {\n    transform: rotateY(0);\n    opacity: 1;\n  }\n}\n/*# sourceMappingURL=loadding-screen.component.css.map */'] });
-  }
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoaddingScreenComponent, { className: "LoaddingScreenComponent", filePath: "src/app/shared/components/loadding-screen/loadding-screen.component.ts", lineNumber: 12 });
-})();
-
-// src/app/app.component.ts
-var AppComponent = class _AppComponent {
-  constructor(themeService) {
-    this.themeService = themeService;
-    this.toast = toast;
-    this.title = "Angular Tailwind";
-  }
-  static {
-    this.\u0275fac = function AppComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _AppComponent)(\u0275\u0275directiveInject(ThemeService));
-    };
-  }
-  static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AppComponent, selectors: [["app-root"]], decls: 5, vars: 2, consts: [[3, "theme"], [3, "detectRouteTransitions"]], template: function AppComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275elementStart(0, "div");
-        \u0275\u0275element(1, "router-outlet")(2, "app-responsive-helper")(3, "ngx-sonner-toaster", 0)(4, "app-loadding-screen", 1);
-        \u0275\u0275elementEnd();
-      }
-      if (rf & 2) {
-        \u0275\u0275advance(3);
-        \u0275\u0275property("theme", ctx.themeService.isDark ? "dark" : "light");
-        \u0275\u0275advance();
-        \u0275\u0275property("detectRouteTransitions", true);
-      }
-    }, dependencies: [RouterOutlet, ResponsiveHelperComponent, NgxSonnerToaster, LoaddingScreenComponent], encapsulation: 2 });
-  }
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.component.ts", lineNumber: 13 });
-})();
 
 // node_modules/@angular/platform-browser/fesm2022/animations/async.mjs
 var ANIMATION_PREFIX = "@";
@@ -516,6 +350,172 @@ function provideAnimationsAsync(type = "animations") {
   }]);
 }
 
+// src/environments/environment.ts
+var environment = class extends Environment {
+  constructor() {
+    super(...arguments);
+    this.production = false;
+  }
+};
+var ENV = new environment();
+
+// src/app/shared/components/responsive-helper/responsive-helper.component.ts
+function ResponsiveHelperComponent_div_0_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 1)(1, "span", 2);
+    \u0275\u0275text(2, "sm");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "span", 3);
+    \u0275\u0275text(4, "md");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(5, "span", 4);
+    \u0275\u0275text(6, "lg");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "span", 5);
+    \u0275\u0275text(8, "xl");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "span", 6);
+    \u0275\u0275text(10, "2xl");
+    \u0275\u0275elementEnd()();
+  }
+}
+var ResponsiveHelperComponent = class _ResponsiveHelperComponent {
+  constructor() {
+    this.env = environment;
+  }
+  ngOnInit() {
+  }
+  static {
+    this.\u0275fac = function ResponsiveHelperComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _ResponsiveHelperComponent)();
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _ResponsiveHelperComponent, selectors: [["app-responsive-helper"]], decls: 1, vars: 1, consts: [["class", "fixed bottom-20 right-5 hidden rounded-md bg-primary py-1 px-3 align-middle text-sm font-medium text-primary-foreground sm:block", 4, "ngIf"], [1, "fixed", "bottom-20", "right-5", "hidden", "rounded-md", "bg-primary", "py-1", "px-3", "align-middle", "text-sm", "font-medium", "text-primary-foreground", "sm:block"], [1, "hidden", "sm:block", "md:hidden"], [1, "hidden", "md:block", "lg:hidden"], [1, "hidden", "lg:block", "xl:hidden"], [1, "hidden", "xl:block", "2xl:hidden"], [1, "hidden", "2xl:block"]], template: function ResponsiveHelperComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275template(0, ResponsiveHelperComponent_div_0_Template, 11, 0, "div", 0);
+      }
+      if (rf & 2) {
+        \u0275\u0275property("ngIf", !ctx.env.production);
+      }
+    }, dependencies: [NgIf], encapsulation: 2 });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(ResponsiveHelperComponent, { className: "ResponsiveHelperComponent", filePath: "src/app/shared/components/responsive-helper/responsive-helper.component.ts", lineNumber: 11 });
+})();
+
+// src/app/shared/components/loadding-screen/loadding-screen.component.ts
+function LoaddingScreenComponent_Conditional_0_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "div", 2);
+    \u0275\u0275element(3, "img", 3);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(4, "div", 4)(5, "span", 5);
+    \u0275\u0275text(6, "L");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(7, "span", 6);
+    \u0275\u0275text(8, "O");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(9, "span", 7);
+    \u0275\u0275text(10, "A");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(11, "span", 8);
+    \u0275\u0275text(12, "D");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(13, "span", 9);
+    \u0275\u0275text(14, "I");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(15, "span", 10);
+    \u0275\u0275text(16, "N");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(17, "span", 11);
+    \u0275\u0275text(18, "G");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(19, "span", 12);
+    \u0275\u0275text(20, ".");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(21, "span", 12);
+    \u0275\u0275text(22, ".");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(23, "span", 12);
+    \u0275\u0275text(24, ".");
+    \u0275\u0275elementEnd()()()();
+  }
+}
+var LoaddingScreenComponent = class _LoaddingScreenComponent {
+  constructor(loadingService, router) {
+    this.loadingService = loadingService;
+    this.router = router;
+    this.detectRouteTransitions = false;
+    this.loading$ = false;
+    this.loadingService.loading$.subscribe((res) => {
+      this.loading$ = res;
+    });
+  }
+  ngOnInit() {
+    if (this.detectRouteTransitions) {
+      this.router.events.pipe(tap((event) => {
+        if (event instanceof RouteConfigLoadStart) {
+          this.loadingService.loadingOn();
+        } else if (event instanceof RouteConfigLoadEnd) {
+          this.loadingService.loadingOff();
+        }
+      })).subscribe();
+    }
+  }
+  static {
+    this.\u0275fac = function LoaddingScreenComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _LoaddingScreenComponent)(\u0275\u0275directiveInject(LoadingService), \u0275\u0275directiveInject(Router));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _LoaddingScreenComponent, selectors: [["app-loadding-screen"]], inputs: { detectRouteTransitions: "detectRouteTransitions" }, decls: 1, vars: 1, consts: [["id", "page"], ["id", "container"], [1, "flex", "items-center", "justify-center", "w-full"], ["src", "assets/images/logo.png", "alt", "", 1, "w-42"], [1, "loading", "loading06"], ["data-text", "L"], ["data-text", "O"], ["data-text", "A"], ["data-text", "D"], ["data-text", "I"], ["data-text", "N"], ["data-text", "G"], ["data-text", "."]], template: function LoaddingScreenComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275template(0, LoaddingScreenComponent_Conditional_0_Template, 25, 0, "div", 0);
+      }
+      if (rf & 2) {
+        \u0275\u0275conditional(ctx.loading$ === true ? 0 : -1);
+      }
+    }, styles: ['\n\n#page[_ngcontent-%COMP%] {\n  position: fixed;\n  z-index: 100;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.32);\n  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);\n}\n#container[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  flex-wrap: wrap;\n}\n.loading[_ngcontent-%COMP%] {\n  font-size: 20px;\n  font-family: "Montserrat", sans-serif;\n  font-weight: 800;\n  text-align: center;\n}\n.loading[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  display: inline-block;\n  margin: 0 -0.05em;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  position: relative;\n  color: black;\n  padding: 0 2px;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]::after {\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: attr(data-text);\n  color: #fff;\n  opacity: 0;\n  transform: rotateY(-90deg);\n  animation: _ngcontent-%COMP%_loading06 4s infinite;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(2)::after {\n  animation-delay: 0.2s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(3)::after {\n  animation-delay: 0.4s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(4)::after {\n  animation-delay: 0.6s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(5)::after {\n  animation-delay: 0.8s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(6)::after {\n  animation-delay: 1s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(7)::after {\n  animation-delay: 1.2s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(8)::after {\n  animation-delay: 1.4s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(9)::after {\n  animation-delay: 1.6s;\n}\n.loading06[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]:nth-child(10)::after {\n  animation-delay: 1.8s;\n}\n@keyframes _ngcontent-%COMP%_loading06 {\n  0%, 75%, 100% {\n    transform: rotateY(-90deg);\n    opacity: 0;\n  }\n  25%, 50% {\n    transform: rotateY(0);\n    opacity: 1;\n  }\n}\n/*# sourceMappingURL=loadding-screen.component.css.map */'] });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(LoaddingScreenComponent, { className: "LoaddingScreenComponent", filePath: "src/app/shared/components/loadding-screen/loadding-screen.component.ts", lineNumber: 12 });
+})();
+
+// src/app/app.component.ts
+var AppComponent = class _AppComponent {
+  constructor(themeService) {
+    this.themeService = themeService;
+    this.toast = toast;
+    this.title = "Angular Tailwind";
+  }
+  static {
+    this.\u0275fac = function AppComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _AppComponent)(\u0275\u0275directiveInject(ThemeService));
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AppComponent, selectors: [["app-root"]], decls: 5, vars: 2, consts: [[3, "theme"], [3, "detectRouteTransitions"]], template: function AppComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275elementStart(0, "div");
+        \u0275\u0275element(1, "router-outlet")(2, "app-responsive-helper")(3, "ngx-sonner-toaster", 0)(4, "app-loadding-screen", 1);
+        \u0275\u0275elementEnd();
+      }
+      if (rf & 2) {
+        \u0275\u0275advance(3);
+        \u0275\u0275property("theme", ctx.themeService.isDark ? "dark" : "light");
+        \u0275\u0275advance();
+        \u0275\u0275property("detectRouteTransitions", true);
+      }
+    }, dependencies: [RouterOutlet, ResponsiveHelperComponent, NgxSonnerToaster, LoaddingScreenComponent], encapsulation: 2 });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.component.ts", lineNumber: 13 });
+})();
+
 // src/app/auth/auth-guard.service.ts
 var AuthGuard = class _AuthGuard {
   constructor(credentialService, router) {
@@ -572,12 +572,12 @@ var NoAuthGuard = class _NoAuthGuard {
 var routes = [
   {
     path: "",
-    loadChildren: () => import("./layout.module-OAHIBZV3.js").then((m) => m.LayoutModule),
+    loadChildren: () => import("./layout.module-LJGGPAAG.js").then((m) => m.LayoutModule),
     canActivate: [AuthGuard]
   },
   {
     path: "auth",
-    loadChildren: () => import("./auth.module-P2K6MM64.js").then((m) => m.AuthModule),
+    loadChildren: () => import("./auth.module-7GLDQVV2.js").then((m) => m.AuthModule),
     canActivate: [NoAuthGuard]
   },
   {

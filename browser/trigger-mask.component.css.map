@@ -2,6 +2,6 @@
   "version": 3,
   "sources": ["src/app/modules/management/components/trigger-mask/trigger-mask.component.scss"],
   "sourcesContent": [".action-preview-img {\n  opacity: 1;\n}"],
-  "mappings": ";AAAA,CAAA;AACE,WAAA;;",
+  "mappings": ";AAAA,CAAA;AACE,WAAA;AACF;",
   "names": []
 }
