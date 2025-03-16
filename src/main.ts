@@ -1,20 +1,28 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { AppComponent } from './app/app.component';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  enableProdMode,
+  importProvidersFrom,
+} from '@angular/core';
+import {
+  bootstrapApplication,
+  BrowserModule,
+} from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoadingInterceptor } from './app/shared/Interceptor/loading-interceptor';
-import { LoadingService } from './app/shared/services/loading.service';
-import { AppModule } from './app/app.module';
+
 import { ENV } from '@app/env';
+
+import { AppComponent } from './app/app.component';
+import { AppModule } from './app/app.module';
+import { LoadingInterceptor } from './app/shared/Interceptor/loading-interceptor';
 import { TokenInterceptor } from './app/shared/Interceptor/token.interceptor';
+import { LoadingService } from './app/shared/services/loading.service';
 
 if (ENV.production) {
   enableProdMode();
   //show this warning only on prod mode
   if (window) {
-    selfXSSWarning();
+    selfXSSWarning(); 
   }
 }
 
